@@ -1,7 +1,9 @@
+import { config } from 'dotenv';
 import express from 'express';
 import payload from 'payload';
 
-require('dotenv').config();
+config();
+
 const app = express();
 
 // Redirect root to Admin panel
@@ -13,12 +15,15 @@ app.get('/', (_, res) => {
 payload.init({
   secret: process.env.PAYLOAD_SECRET,
   mongoURL: process.env.MONGODB_URI,
+  mongoOptions: {
+    user: process.env.MONGODB_USERNAME,
+    pass: process.env.MONGODB_PASSWORD,
+    dbName: process.env.MONGODB_DATABASE,
+  },
   express: app,
   onInit: () => {
-    payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`)
+    payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`);
   },
-})
-
-// Add your own express routes here
+});
 
 app.listen(3000);

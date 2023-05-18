@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.0.1](https://github.com/hjbugajski/jesse-and-henry-payload-cms/compare/v1.0.0...v1.0.1) (2023-05-18)
+
+### Bug Fixes
+
+- update access controls ([15f8607](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/15f8607821324ecb998700a5f973d7cdcb5771f4))
+
 ## 1.0.0 (2023-05-01)
 
 ### Features

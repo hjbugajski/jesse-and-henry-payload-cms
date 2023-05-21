@@ -17,4 +17,6 @@ export default buildConfig({
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
   cors: [process.env.MONGODB_IP].filter(Boolean),
+  csrf: [process.env.SERVER_URL, process.env.DOMAIN].filter(Boolean),
+  serverURL: process.env.SERVER_URL,
 });

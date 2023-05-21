@@ -2,14 +2,18 @@ import path from 'path';
 
 import { buildConfig } from 'payload/config';
 
+import Guests from './collections/Guests';
 import Pages from './collections/Pages';
+import Parties from './collections/Parties';
+import Relations from './collections/Relations';
+import Sides from './collections/Sides';
 import Users from './collections/Users';
 
 export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Pages, Users],
+  collections: [Guests, Pages, Parties, Relations, Sides, Users],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },

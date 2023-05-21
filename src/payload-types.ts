@@ -7,9 +7,60 @@
 
 export interface Config {
   collections: {
+    guests: Guest;
     pages: Page;
+    parties: Party;
+    relations: Relation;
+    sides: Side;
     users: User;
   };
+}
+export interface Guest {
+  id: string;
+  first?: string;
+  last?: string;
+  party?: string | Party;
+  side?: string | Side;
+  relation?: string | Relation;
+  phone?: string;
+  address?: string;
+  rsvpWelcomeParty?: 'accept' | 'decline';
+  rsvpWedding?: 'accept' | 'decline';
+  rsvpBrunch?: 'accept' | 'decline';
+  sort?: number;
+  updatedAt: string;
+  createdAt: string;
+  email?: string;
+  resetPasswordToken?: string;
+  resetPasswordExpiration?: string;
+  loginAttempts?: number;
+  lockUntil?: string;
+  password?: string;
+}
+export interface Party {
+  id: string;
+  value: string;
+  color?: 'green' | 'teal' | 'cyan' | 'blue' | 'violet' | 'purple' | 'plum' | 'pink' | 'red' | 'orange';
+  sort?: number;
+  code?: string;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Side {
+  id: string;
+  value: string;
+  color?: 'green' | 'teal' | 'cyan' | 'blue' | 'violet' | 'purple' | 'plum' | 'pink' | 'red' | 'orange';
+  sort?: number;
+  updatedAt: string;
+  createdAt: string;
+}
+export interface Relation {
+  id: string;
+  value: string;
+  color?: 'green' | 'teal' | 'cyan' | 'blue' | 'violet' | 'purple' | 'plum' | 'pink' | 'red' | 'orange';
+  sort?: number;
+  updatedAt: string;
+  createdAt: string;
 }
 export interface Page {
   id: string;

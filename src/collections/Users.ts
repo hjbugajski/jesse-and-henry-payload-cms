@@ -1,6 +1,6 @@
 import { CollectionConfig } from 'payload/types';
 
-import { isAdmin, isAdminOrSelf } from '../access';
+import { isAdmin, isAdminFieldLevel, isAdminOrSelf, isAdminOrSelfFieldLevel } from '../access';
 
 const Users: CollectionConfig = {
   slug: 'users',
@@ -15,7 +15,21 @@ const Users: CollectionConfig = {
     update: isAdminOrSelf,
     delete: isAdmin,
   },
-  fields: [],
+  fields: [
+    {
+      name: 'roles',
+      type: 'select',
+      hasMany: true,
+      defaultValue: ['public'],
+      required: true,
+      access: {
+        read: isAdminOrSelfFieldLevel,
+        create: isAdminFieldLevel,
+        update: isAdminFieldLevel,
+      },
+      options: ['admin', 'public'],
+    },
+  ],
 };
 
 export default Users;

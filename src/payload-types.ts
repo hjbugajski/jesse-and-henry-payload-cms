@@ -39,18 +39,19 @@ export interface Page {
         }
     )[];
   };
-  _status?: 'draft' | 'published';
-  createdAt: string;
   updatedAt: string;
+  createdAt: string;
+  _status?: 'draft' | 'published';
 }
 export interface User {
   id: string;
+  roles: ('admin' | 'public')[];
+  updatedAt: string;
+  createdAt: string;
   email?: string;
   resetPasswordToken?: string;
   resetPasswordExpiration?: string;
   loginAttempts?: number;
   lockUntil?: string;
-  createdAt: string;
-  updatedAt: string;
   password?: string;
 }

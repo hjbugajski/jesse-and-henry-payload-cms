@@ -12,6 +12,7 @@ import Users from './collections/Users';
 export default buildConfig({
   admin: {
     user: Users.slug,
+    css: path.resolve(__dirname, 'custom/styles/index.scss'),
   },
   collections: [Guests, Pages, Parties, Relations, Sides, Users],
   typescript: {

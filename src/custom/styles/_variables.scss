@@ -1,0 +1,426 @@
+:root {
+  // Gray variables
+  --gray1: hsl(0deg 0% 99%);
+  --gray2: hsl(0deg 0% 97.3%);
+  --gray3: hsl(0deg 0% 95.1%);
+  --gray4: hsl(0deg 0% 93%);
+  --gray5: hsl(0deg 0% 90.9%);
+  --gray6: hsl(0deg 0% 88.7%);
+  --gray7: hsl(0deg 0% 85.8%);
+  --gray8: hsl(0deg 0% 78%);
+  --gray9: hsl(0deg 0% 56.1%);
+  --gray10: hsl(0deg 0% 52.3%);
+  --gray11: hsl(0deg 0% 43.5%);
+  --gray12: hsl(0deg 0% 9%);
+
+  // Red variables
+  --red1: hsl(359deg 100% 99.4%);
+  --red2: hsl(359deg 100% 98.6%);
+  --red3: hsl(360deg 100% 96.8%);
+  --red4: hsl(360deg 97.9% 94.8%);
+  --red5: hsl(360deg 90.2% 91.9%);
+  --red6: hsl(360deg 81.7% 87.8%);
+  --red7: hsl(359deg 74.2% 81.7%);
+  --red8: hsl(359deg 69.5% 74.3%);
+  --red9: hsl(358deg 75% 59%);
+  --red10: hsl(358deg 69.4% 55.2%);
+  --red11: hsl(358deg 65% 48.7%);
+  --red12: hsl(354deg 50% 14.6%);
+
+  // Pink variables
+  --pink1: hsl(322deg 100% 99.4%);
+  --pink2: hsl(323deg 100% 98.4%);
+  --pink3: hsl(323deg 86.3% 96.5%);
+  --pink4: hsl(323deg 78.7% 94.2%);
+  --pink5: hsl(323deg 72.2% 91.1%);
+  --pink6: hsl(323deg 66.3% 86.6%);
+  --pink7: hsl(323deg 62% 80.1%);
+  --pink8: hsl(323deg 60.3% 72.4%);
+  --pink9: hsl(322deg 65% 54.5%);
+  --pink10: hsl(322deg 63.9% 50.7%);
+  --pink11: hsl(322deg 75% 46%);
+  --pink12: hsl(320deg 70% 13.5%);
+
+  // Plum variables
+  --plum1: hsl(292deg 90% 99.4%);
+  --plum2: hsl(300deg 100% 98.6%);
+  --plum3: hsl(299deg 71.2% 96.4%);
+  --plum4: hsl(299deg 62% 93.8%);
+  --plum5: hsl(298deg 56.1% 90.5%);
+  --plum6: hsl(296deg 51.3% 85.8%);
+  --plum7: hsl(295deg 48.2% 78.9%);
+  --plum8: hsl(292deg 47.7% 70.8%);
+  --plum9: hsl(292deg 45% 51%);
+  --plum10: hsl(292deg 50.2% 46.9%);
+  --plum11: hsl(292deg 60% 42.5%);
+  --plum12: hsl(291deg 66% 14%);
+
+  // Purple variables
+  --purple1: hsl(280deg 65% 99.4%);
+  --purple2: hsl(276deg 100% 99%);
+  --purple3: hsl(276deg 83.1% 97%);
+  --purple4: hsl(275deg 76.4% 94.7%);
+  --purple5: hsl(275deg 70.8% 91.8%);
+  --purple6: hsl(274deg 65.4% 87.8%);
+  --purple7: hsl(273deg 61% 81.7%);
+  --purple8: hsl(272deg 60% 73.5%);
+  --purple9: hsl(272deg 51% 54%);
+  --purple10: hsl(272deg 46.8% 50.3%);
+  --purple11: hsl(272deg 50% 45.8%);
+  --purple12: hsl(272deg 66% 16%);
+
+  // Violet variables
+  --violet1: hsl(255deg 65% 99.4%);
+  --violet2: hsl(252deg 100% 99%);
+  --violet3: hsl(252deg 96.9% 97.4%);
+  --violet4: hsl(252deg 91.5% 95.5%);
+  --violet5: hsl(252deg 85.1% 93%);
+  --violet6: hsl(252deg 77.8% 89.4%);
+  --violet7: hsl(252deg 71% 83.7%);
+  --violet8: hsl(252deg 68.6% 76.3%);
+  --violet9: hsl(252deg 56% 57.5%);
+  --violet10: hsl(251deg 48.1% 53.5%);
+  --violet11: hsl(250deg 43% 48%);
+  --violet12: hsl(254deg 60% 18.5%);
+
+  // Blue variables
+  --blue1: hsl(206deg 100% 99.2%);
+  --blue2: hsl(210deg 100% 98%);
+  --blue3: hsl(209deg 100% 96.5%);
+  --blue4: hsl(210deg 98.8% 94%);
+  --blue5: hsl(209deg 95% 90.1%);
+  --blue6: hsl(209deg 81.2% 84.5%);
+  --blue7: hsl(208deg 77.5% 76.9%);
+  --blue8: hsl(206deg 81.9% 65.3%);
+  --blue9: hsl(206deg 100% 50%);
+  --blue10: hsl(208deg 100% 47.3%);
+  --blue11: hsl(211deg 100% 43.2%);
+  --blue12: hsl(211deg 100% 15%);
+
+  // Cyan variables
+  --cyan1: hsl(185deg 60% 98.7%);
+  --cyan2: hsl(185deg 73.3% 97.1%);
+  --cyan3: hsl(186deg 70.2% 94.4%);
+  --cyan4: hsl(186deg 63.8% 90.6%);
+  --cyan5: hsl(187deg 58.3% 85.4%);
+  --cyan6: hsl(188deg 54.6% 78.4%);
+  --cyan7: hsl(189deg 53.7% 68.7%);
+  --cyan8: hsl(189deg 60.3% 52.5%);
+  --cyan9: hsl(190deg 95% 39%);
+  --cyan10: hsl(191deg 91.2% 36.8%);
+  --cyan11: hsl(192deg 85% 31%);
+  --cyan12: hsl(192deg 88% 12.5%);
+
+  // Teal variables
+  --teal1: hsl(165deg 60% 98.8%);
+  --teal2: hsl(169deg 64.7% 96.7%);
+  --teal3: hsl(169deg 59.8% 94%);
+  --teal4: hsl(169deg 53.1% 90.2%);
+  --teal5: hsl(170deg 47.1% 85%);
+  --teal6: hsl(170deg 42.6% 77.9%);
+  --teal7: hsl(170deg 39.9% 68.1%);
+  --teal8: hsl(172deg 42.1% 52.5%);
+  --teal9: hsl(173deg 80% 36%);
+  --teal10: hsl(173deg 83.4% 32.5%);
+  --teal11: hsl(174deg 90% 25.2%);
+  --teal12: hsl(170deg 50% 12.5%);
+
+  // Green variables
+  --green1: hsl(136deg 50% 98.9%);
+  --green2: hsl(138deg 62.5% 96.9%);
+  --green3: hsl(139deg 55.2% 94.5%);
+  --green4: hsl(140deg 48.7% 91%);
+  --green5: hsl(141deg 43.7% 86%);
+  --green6: hsl(143deg 40.3% 79%);
+  --green7: hsl(146deg 38.5% 69%);
+  --green8: hsl(151deg 40.2% 54.1%);
+  --green9: hsl(151deg 55% 41.5%);
+  --green10: hsl(152deg 57.5% 37.6%);
+  --green11: hsl(153deg 67% 28.5%);
+  --green12: hsl(155deg 40% 14%);
+
+  // Orange variables
+  --orange1: hsl(24deg 70% 99%);
+  --orange2: hsl(24deg 83.3% 97.6%);
+  --orange3: hsl(24deg 100% 95.3%);
+  --orange4: hsl(25deg 100% 92.2%);
+  --orange5: hsl(25deg 100% 88.2%);
+  --orange6: hsl(25deg 100% 82.8%);
+  --orange7: hsl(24deg 100% 75.3%);
+  --orange8: hsl(24deg 94.5% 64.3%);
+  --orange9: hsl(24deg 94% 50%);
+  --orange10: hsl(24deg 100% 46.5%);
+  --orange11: hsl(24deg 100% 37%);
+  --orange12: hsl(15deg 60% 17%);
+
+  // Black overlay variables
+  --blackA1: hsl(0deg 0% 0% / 1.2%);
+  --blackA2: hsl(0deg 0% 0% / 2.7%);
+  --blackA3: hsl(0deg 0% 0% / 4.7%);
+  --blackA4: hsl(0deg 0% 0% / 7.1%);
+  --blackA5: hsl(0deg 0% 0% / 9%);
+  --blackA6: hsl(0deg 0% 0% / 11.4%);
+  --blackA7: hsl(0deg 0% 0% / 14.1%);
+  --blackA8: hsl(0deg 0% 0% / 22%);
+  --blackA9: hsl(0deg 0% 0% / 43.9%);
+  --blackA10: hsl(0deg 0% 0% / 47.8%);
+  --blackA11: hsl(0deg 0% 0% / 56.5%);
+  --blackA12: hsl(0deg 0% 0% / 91%);
+
+  // White overlay variables
+  --whiteA1: hsl(0deg 0% 100% / 0%);
+  --whiteA2: hsl(0deg 0% 100% / 1.3%);
+  --whiteA3: hsl(0deg 0% 100% / 3.4%);
+  --whiteA4: hsl(0deg 0% 100% / 5.6%);
+  --whiteA5: hsl(0deg 0% 100% / 8.6%);
+  --whiteA6: hsl(0deg 0% 100% / 12.4%);
+  --whiteA7: hsl(0deg 0% 100% / 17.6%);
+  --whiteA8: hsl(0deg 0% 100% / 24.9%);
+  --whiteA9: hsl(0deg 0% 100% / 38.6%);
+  --whiteA10: hsl(0deg 0% 100% / 44.6%);
+  --whiteA11: hsl(0deg 0% 100% / 59.2%);
+  --whiteA12: hsl(0deg 0% 100% / 92.3%);
+
+  // Color variables
+  --color-background: var(--gray1);
+  --color-background-subtle: var(--gray2);
+  --color-background-element: var(--gray3);
+  --color-hover: var(--gray4);
+  --color-active: var(--gray5);
+  --color-border-subtle: var(--gray6);
+  --color-border: var(--gray7);
+  --color-border-hover: var(--gray8);
+  --color-solid: var(--gray9);
+  --color-solid-hover: var(--gray10);
+  --color-low-contrast: var(--gray11);
+  --color-high-contrast: var(--gray12);
+
+  // Alpha color variables
+  --color-background-overlay: var(--blackA9);
+  --color-shadow1: var(--blackA3);
+  --color-shadow2: var(--blackA5);
+  --color-shadow3: var(--blackA7);
+
+  // Primary color variables
+  --color-primary-background: var(--blue1);
+  --color-primary-background-subtle: var(--blue2);
+  --color-primary-background-element: var(--blue3);
+  --color-primary-hover: var(--blue4);
+  --color-primary-active: var(--blue5);
+  --color-primary-border-subtle: var(--blue6);
+  --color-primary-border: var(--blue7);
+  --color-primary-border-hover: var(--blue8);
+  --color-primary-solid: var(--blue9);
+  --color-primary-solid-hover: var(--blue10);
+  --color-primary-low-contrast: var(--blue11);
+  --color-primary-high-contrast: var(--blue12);
+
+  // Success color variables
+  --color-success-background: var(--green1);
+  --color-success-background-subtle: var(--green2);
+  --color-success-background-element: var(--green3);
+  --color-success-hover: var(--green4);
+  --color-success-active: var(--green5);
+  --color-success-border-subtle: var(--green6);
+  --color-success-border: var(--green7);
+  --color-success-border-hover: var(--green8);
+  --color-success-solid: var(--green9);
+  --color-success-solid-hover: var(--green10);
+  --color-success-low-contrast: var(--green11);
+  --color-success-high-contrast: var(--green12);
+
+  // Warning color variables
+  --color-warning-background: var(--orange1);
+  --color-warning-background-subtle: var(--orange2);
+  --color-warning-background-element: var(--orange3);
+  --color-warning-hover: var(--orange4);
+  --color-warning-active: var(--orange5);
+  --color-warning-border-subtle: var(--orange6);
+  --color-warning-border: var(--orange7);
+  --color-warning-border-hover: var(--orange8);
+  --color-warning-solid: var(--orange9);
+  --color-warning-solid-hover: var(--orange10);
+  --color-warning-low-contrast: var(--orange11);
+  --color-warning-high-contrast: var(--orange12);
+
+  // Danger color variables
+  --color-danger-background: var(--red1);
+  --color-danger-background-subtle: var(--red2);
+  --color-danger-background-element: var(--red3);
+  --color-danger-hover: var(--red4);
+  --color-danger-active: var(--red5);
+  --color-danger-border-subtle: var(--red6);
+  --color-danger-border: var(--red7);
+  --color-danger-border-hover: var(--red8);
+  --color-danger-solid: var(--red9);
+  --color-danger-solid-hover: var(--red10);
+  --color-danger-low-contrast: var(--red11);
+  --color-danger-high-contrast: var(--red12);
+
+  // Font variables
+  --font-weight-regular: 400;
+  --font-weight-medium: 600;
+  --font-weight-bold: 700;
+
+  // Misc variables
+  --border-radius: 0.25rem;
+  --box-shadow: var(--color-shadow1) 0 0 0 1px, var(--color-shadow2) 0 3px 6px, var(--color-shadow3) 0 9px 24px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    // Gray variables
+    --gray1: hsl(0deg 0% 8.5%);
+    --gray2: hsl(0deg 0% 11%);
+    --gray3: hsl(0deg 0% 13.6%);
+    --gray4: hsl(0deg 0% 15.8%);
+    --gray5: hsl(0deg 0% 17.9%);
+    --gray6: hsl(0deg 0% 20.5%);
+    --gray7: hsl(0deg 0% 24.3%);
+    --gray8: hsl(0deg 0% 31.2%);
+    --gray9: hsl(0deg 0% 43.9%);
+    --gray10: hsl(0deg 0% 49.4%);
+    --gray11: hsl(0deg 0% 62.8%);
+    --gray12: hsl(0deg 0% 93%);
+
+    // Red variables
+    --red1: hsl(353deg 23% 9.8%);
+    --red2: hsl(357deg 34.4% 12%);
+    --red3: hsl(356deg 43.4% 16.4%);
+    --red4: hsl(356deg 47.6% 19.2%);
+    --red5: hsl(356deg 51.1% 21.9%);
+    --red6: hsl(356deg 55.2% 25.9%);
+    --red7: hsl(357deg 60.2% 31.8%);
+    --red8: hsl(358deg 65% 40.4%);
+    --red9: hsl(358deg 75% 59%);
+    --red10: hsl(358deg 85.3% 64%);
+    --red11: hsl(358deg 100% 69.5%);
+    --red12: hsl(351deg 89% 96%);
+
+    // Pink variables
+    --pink1: hsl(318deg 25% 9.6%);
+    --pink2: hsl(319deg 32.2% 11.6%);
+    --pink3: hsl(319deg 41% 16%);
+    --pink4: hsl(320deg 45.4% 18.7%);
+    --pink5: hsl(320deg 49% 21.1%);
+    --pink6: hsl(321deg 53.6% 24.4%);
+    --pink7: hsl(321deg 61.1% 29.7%);
+    --pink8: hsl(322deg 74.9% 37.5%);
+    --pink9: hsl(322deg 65% 54.5%);
+    --pink10: hsl(323deg 72.8% 59.2%);
+    --pink11: hsl(325deg 90% 66.4%);
+    --pink12: hsl(322deg 90% 95.8%);
+
+    // Plum variables
+    --plum1: hsl(301deg 20% 9.4%);
+    --plum2: hsl(300deg 29.8% 11.2%);
+    --plum3: hsl(298deg 34.4% 15.3%);
+    --plum4: hsl(297deg 36.8% 18.3%);
+    --plum5: hsl(296deg 38.5% 21.1%);
+    --plum6: hsl(295deg 40.4% 24.7%);
+    --plum7: hsl(294deg 42.7% 30.6%);
+    --plum8: hsl(292deg 45.1% 40%);
+    --plum9: hsl(292deg 45% 51%);
+    --plum10: hsl(295deg 50% 55.4%);
+    --plum11: hsl(300deg 60% 62%);
+    --plum12: hsl(296deg 74% 95.7%);
+
+    // Purple variables
+    --purple1: hsl(284deg 20% 9.6%);
+    --purple2: hsl(283deg 30% 11.8%);
+    --purple3: hsl(281deg 37.5% 16.5%);
+    --purple4: hsl(280deg 41.2% 20%);
+    --purple5: hsl(279deg 43.8% 23.3%);
+    --purple6: hsl(277deg 46.4% 27.5%);
+    --purple7: hsl(275deg 49.3% 34.6%);
+    --purple8: hsl(272deg 52.1% 45.9%);
+    --purple9: hsl(272deg 51% 54%);
+    --purple10: hsl(273deg 57.3% 59.1%);
+    --purple11: hsl(275deg 80% 71%);
+    --purple12: hsl(279deg 75% 95.7%);
+
+    // Violet variables
+    --violet1: hsl(250deg 20% 10.2%);
+    --violet2: hsl(255deg 30.3% 12.9%);
+    --violet3: hsl(253deg 37% 18.4%);
+    --violet4: hsl(252deg 40.1% 22.5%);
+    --violet5: hsl(252deg 42.2% 26.2%);
+    --violet6: hsl(251deg 44.3% 31.1%);
+    --violet7: hsl(250deg 46.8% 38.9%);
+    --violet8: hsl(250deg 51.8% 51.2%);
+    --violet9: hsl(252deg 56% 57.5%);
+    --violet10: hsl(251deg 63.2% 63.2%);
+    --violet11: hsl(250deg 95% 76.8%);
+    --violet12: hsl(252deg 87% 96.4%);
+
+    // Blue variables
+    --blue1: hsl(212deg 35% 9.2%);
+    --blue2: hsl(216deg 50% 11.8%);
+    --blue3: hsl(214deg 59.4% 15.3%);
+    --blue4: hsl(214deg 65.8% 17.9%);
+    --blue5: hsl(213deg 71.2% 20.2%);
+    --blue6: hsl(212deg 77.4% 23.1%);
+    --blue7: hsl(211deg 85.1% 27.4%);
+    --blue8: hsl(211deg 89.7% 34.1%);
+    --blue9: hsl(206deg 100% 50%);
+    --blue10: hsl(209deg 100% 60.6%);
+    --blue11: hsl(210deg 100% 66.1%);
+    --blue12: hsl(206deg 98% 95.8%);
+
+    // Cyan variables
+    --cyan1: hsl(192deg 60% 7.2%);
+    --cyan2: hsl(192deg 71.4% 8.2%);
+    --cyan3: hsl(192deg 75.9% 10.8%);
+    --cyan4: hsl(192deg 79.3% 12.8%);
+    --cyan5: hsl(192deg 82.5% 14.6%);
+    --cyan6: hsl(192deg 86.6% 16.9%);
+    --cyan7: hsl(192deg 92.6% 20.1%);
+    --cyan8: hsl(192deg 100% 24.5%);
+    --cyan9: hsl(190deg 95% 39%);
+    --cyan10: hsl(188deg 100% 40%);
+    --cyan11: hsl(186deg 100% 42.2%);
+    --cyan12: hsl(185deg 73% 93.2%);
+
+    // Teal variables
+    --teal1: hsl(168deg 48% 6.5%);
+    --teal2: hsl(169deg 77.8% 7.1%);
+    --teal3: hsl(170deg 76.1% 9.2%);
+    --teal4: hsl(171deg 75.8% 11%);
+    --teal5: hsl(171deg 75.7% 12.8%);
+    --teal6: hsl(172deg 75.8% 15.1%);
+    --teal7: hsl(172deg 76.7% 18.6%);
+    --teal8: hsl(173deg 80.2% 23.7%);
+    --teal9: hsl(173deg 80% 36%);
+    --teal10: hsl(174deg 83.9% 38.2%);
+    --teal11: hsl(174deg 90% 40.7%);
+    --teal12: hsl(166deg 73% 93.1%);
+
+    // Green variables
+    --green1: hsl(146deg 30% 7.4%);
+    --green2: hsl(155deg 44.2% 8.4%);
+    --green3: hsl(155deg 46.7% 10.9%);
+    --green4: hsl(154deg 48.4% 12.9%);
+    --green5: hsl(154deg 49.7% 14.9%);
+    --green6: hsl(154deg 50.9% 17.6%);
+    --green7: hsl(153deg 51.8% 21.8%);
+    --green8: hsl(151deg 51.7% 28.4%);
+    --green9: hsl(151deg 55% 41.5%);
+    --green10: hsl(151deg 49.3% 46.5%);
+    --green11: hsl(151deg 50% 53.2%);
+    --green12: hsl(137deg 72% 94%);
+
+    // Orange variables
+    --orange1: hsl(30deg 70% 7.2%);
+    --orange2: hsl(28deg 100% 8.4%);
+    --orange3: hsl(26deg 91.1% 11.6%);
+    --orange4: hsl(25deg 88.3% 14.1%);
+    --orange5: hsl(24deg 87.6% 16.6%);
+    --orange6: hsl(24deg 88.6% 19.8%);
+    --orange7: hsl(24deg 92.4% 24%);
+    --orange8: hsl(25deg 100% 29%);
+    --orange9: hsl(24deg 94% 50%);
+    --orange10: hsl(24deg 100% 58.5%);
+    --orange11: hsl(24deg 100% 62.2%);
+    --orange12: hsl(24deg 97% 93.2%);
+  }
+}

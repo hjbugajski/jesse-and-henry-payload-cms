@@ -3,6 +3,7 @@ import { BeforeValidateHook } from 'payload/dist/collections/config/types';
 import { CollectionConfig, Field } from 'payload/types';
 
 import { isAdmin, isAdminFieldLevel, isAdminOrSelf, isAdminOrSelfFieldLevel } from '../access';
+import GuestList from '../custom/components/GuestList';
 import { Guest } from '../payload-types';
 
 dotenv.config();
@@ -84,6 +85,11 @@ const Guests: CollectionConfig = {
       'rsvpBrunch',
       'sort',
     ],
+    components: {
+      views: {
+        List: GuestList,
+      },
+    },
   },
   hooks: {
     beforeValidate: [beforeValidateHook],

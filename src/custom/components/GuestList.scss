@@ -1,0 +1,243 @@
+.default-page-template {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+
+  .component {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 18.75px;
+  margin-bottom: 25px;
+  width: 100%;
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  .pill {
+    height: fit-content;
+  }
+
+  .margin--bottom {
+    margin-bottom: 6.25px;
+  }
+
+  .selected-text {
+    line-height: 16px;
+    color: var(--color-low-contrast);
+  }
+}
+
+.flex--grow {
+  flex-grow: 1;
+}
+
+.guest-data-grid {
+  --ag-row-height: 36px;
+  --ag-border-radius: var(--border-radius);
+  --ag-card-shadow: var(--box-shadow);
+
+  // Header variables
+  --ag-header-foreground-color: var(--color-low-contrast);
+  --ag-header-height: 2.25rem;
+  --ag-header-column-resize-handle-display: none;
+  --ag-header-column-resize-handle-height: 100%;
+  --ag-header-column-resize-handle-width: 0.2rem;
+  --ag-header-column-resize-handle-color: var(--color-primary-border-hover);
+
+  // Border variables
+  --ag-row-border-style: solid;
+  --ag-row-border-width: 1px;
+  --ag-row-border-color: var(--color-border-subtle);
+  --ag-borders: 0;
+  --ag-borders-critical: solid 1px;
+  --ag-border-color: var(--color-border-subtle);
+  --ag-critical-border-color: var(--color-border-subtle);
+  --ag-borders-input: 0;
+  --ag-input-focus-border-color: var(--color-primary-border-hover);
+
+  // Cell variables
+  --ag-cell-horizontal-padding: 8px;
+  --ag-data-color: var(--color-high-contrast);
+
+  // Row variables
+  --ag-row-hover-color: var(--color-background-subtle);
+
+  // Column variables
+  --ag-column-hover-color: var(--color-background-subtle);
+
+  // Selection variables
+  --ag-selected-row-background-color: var(--color-background-element);
+  --ag-range-selection-border-color: var(--color-primary-border);
+  --ag-range-selection-border-style: solid;
+
+  // Checkbox variables
+  --ag-checkbox-unchecked-color: var(--color-background-element);
+  --ag-checkbox-background-color: var(--color-background-subtle);
+  --ag-checkbox-checked-color: var(--color-primary-solid);
+  --ag-icon-size: 16px;
+}
+
+.ag-header {
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.ag-header-cell {
+  .ag-cell-label-container {
+    padding: 0;
+  }
+
+  .ag-header-cell-text {
+    display: flex;
+    align-items: center;
+
+    height: 100%;
+
+    font-weight: var(--font-weight-medium);
+  }
+
+  .ag-header-cell-resize:hover::after {
+    display: block;
+  }
+
+  &--last::after {
+    background-color: transparent !important;
+  }
+
+  &--checkbox {
+    justify-content: center;
+
+    .ag-header-cell-comp-wrapper {
+      display: none !important;
+    }
+
+    .ag-header-select-all {
+      margin-right: 0 !important;
+    }
+  }
+
+  &:hover {
+    background-color: var(--color-background-subtle) !important;
+  }
+}
+
+.ag-cell {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 0.25rem !important;
+  align-items: center !important;
+
+  &--no-padding {
+    padding: 0 !important;
+  }
+
+  &--last:not(.ag-cell-focus) {
+    border-right: 0 !important;
+  }
+
+  &--checkbox {
+    justify-content: center !important;
+  }
+
+  &--justify-end {
+    justify-content: flex-end !important;
+  }
+}
+
+.ag-header-cell--checkbox,
+.ag-cell--checkbox {
+  input[type='checkbox'] {
+    cursor: pointer;
+
+    width: 14px;
+    height: 14px;
+
+    appearance: none;
+    background-color: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 3px;
+    outline: none;
+
+    &:indeterminate {
+      background-color: var(--color-background-subtle);
+      border-color: var(--color-border);
+
+      &::before {
+        content: '';
+
+        position: absolute;
+        top: 6.5px;
+        left: 3px;
+
+        display: block;
+
+        width: 8px;
+        height: 1px;
+
+        background-color: var(--color-solid);
+        border-radius: 1px;
+      }
+    }
+
+    &:hover {
+      background-color: var(--color-background-element);
+      border-color: var(--color-border-hover);
+    }
+
+    &:checked {
+      color: var(--color-primary-low-contrast);
+      background-color: var(--color-primary-active);
+      border-color: var(--color-primary-border);
+
+      &::before {
+        content: '';
+
+        position: absolute;
+        top: 3px;
+        left: 3px;
+
+        display: block;
+
+        width: 8px;
+        height: 8px;
+
+        background-color: var(--color-primary-solid);
+        border-radius: 1px;
+      }
+
+      &:hover {
+        background-color: var(--color-primary-border-subtle);
+        border-color: var(--color-primary-border-hover);
+
+        &::before {
+          background-color: var(--color-primary-solid-hover);
+        }
+      }
+    }
+  }
+}
+
+.ag-text-field-input {
+  padding: 0 8px;
+  font: inherit;
+  color: inherit;
+
+  &:focus {
+    background-color: var(--color-background-element);
+  }
+}
+
+.text--help {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-low-contrast);
+}

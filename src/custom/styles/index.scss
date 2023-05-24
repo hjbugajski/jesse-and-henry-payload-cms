@@ -1,0 +1,13 @@
+@use './icons';
+@use './variables';
+
+.text--low-contrast {
+  color: var(--color-low-contrast);
+}
+
+.template-default,
+.template-default__wrap {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}

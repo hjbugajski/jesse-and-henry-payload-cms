@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.0.0](https://github.com/hjbugajski/jesse-and-henry-payload-cms/compare/v1.0.1...v2.0.0) (2023-05-24)
+
+### Features
+
+- **collections/Guests:** add custom data grid ([f028936](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/f028936ecc7390a4395ddc804d3d0b243a94ec72))
+- **collections/User:** add roles field ([af32336](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/af323364767b589edd3de4ce7617afb1466022b3))
+- **collections:** add Guests, Parties, Relations, Sides, Tags ([4b70f85](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/4b70f851a7c4372ac58dcb868ee49d9b58a2cc81))
+- **config:** add csrf and serverUrl ([fd37c7c](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/fd37c7c969128534bf98bfefc995a8737d515390))
+- **config:** add custom styles ([72d074d](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/72d074d193d22aef82cebb5c2c39c2acff60191c))
+
 ## [1.0.1](https://github.com/hjbugajski/jesse-and-henry-payload-cms/compare/v1.0.0...v1.0.1) (2023-05-18)
 
 ### Bug Fixes

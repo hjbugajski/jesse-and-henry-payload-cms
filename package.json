@@ -1,7 +1,7 @@
 {
   "name": "jesse-and-henry-payload-cms",
   "description": "Payload project for Jesse's and Henry's wedding.",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "main": "dist/server.js",
   "license": "MIT",
   "scripts": {
@@ -22,20 +22,29 @@
     "release:custom": "commit-and-tag-version -s --release-as"
   },
   "dependencies": {
+    "ag-grid-community": "^29.3.5",
+    "ag-grid-react": "^29.3.5",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "payload": "^1.7.2"
+    "payload": "^1.8.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "5.3.4",
+    "react-select": "^5.7.3"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.6.1",
-    "@commitlint/config-conventional": "^17.6.1",
+    "@commitlint/cli": "^17.6.3",
+    "@commitlint/config-conventional": "^17.6.3",
     "@types/express": "^4.17.17",
-    "@typescript-eslint/eslint-plugin": "^5.59.1",
-    "@typescript-eslint/parser": "^5.59.1",
+    "@types/react": "^18.2.7",
+    "@types/react-dom": "^18.2.4",
+    "@types/react-router-dom": "^5.3.3",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/parser": "^5.59.7",
     "commit-and-tag-version": "^11.2.1",
-    "eslint": "^8.39.0",
+    "eslint": "^8.41.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-import-resolver-typescript": "^3.5.5",
     "eslint-plugin-import": "^2.27.5",

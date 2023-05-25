@@ -40,6 +40,11 @@ const Parties: CollectionConfig = {
       name: 'code',
       label: 'Code',
       type: 'text',
+      unique: true,
+      admin: {
+        position: 'sidebar',
+        readOnly: true,
+      },
     },
   ],
 };

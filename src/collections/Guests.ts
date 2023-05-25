@@ -90,6 +90,7 @@ const Guests: CollectionConfig = {
         List: GuestList,
       },
     },
+    disableDuplicate: true,
   },
   hooks: {
     beforeValidate: [beforeValidateHook],

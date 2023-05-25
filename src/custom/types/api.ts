@@ -15,3 +15,9 @@ export interface PayloadPostApi<T> {
   message: string;
   doc: T;
 }
+
+export interface PayloadFormOnSuccess<T = any> {
+  docs: T[];
+  errors: any[];
+  message: string;
+}

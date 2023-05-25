@@ -13,11 +13,10 @@
 
 .row {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   align-items: flex-end;
   gap: 18.75px;
   margin-bottom: 25px;
-  width: 100%;
 
   h1 {
     margin-bottom: 0;
@@ -25,15 +24,23 @@
 
   .pill {
     height: fit-content;
-  }
-
-  .margin--bottom {
-    margin-bottom: 6.25px;
+    min-width: fit-content;
   }
 
   .selected-text {
     line-height: 16px;
     color: var(--color-low-contrast);
+  }
+
+  &--selection {
+    gap: 12px;
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 768px) {
+    .margin--bottom {
+      margin-bottom: 6.25px;
+    }
   }
 }
 

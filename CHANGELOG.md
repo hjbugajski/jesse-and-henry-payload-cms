@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.1.0](https://github.com/hjbugajski/jesse-and-henry-payload-cms/compare/v2.0.0...v2.1.0) (2023-05-25)
+
+### Features
+
+- **components:** add EditMany, add DeleteMany, update GuestList ([b400411](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/b400411eda715b9a66ce02ef97e4cb94208e5d1f))
+- **config:** add PAYLOAD_DOMAIN to csrf ([c29616e](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/c29616e18240e0aca15c38e1c6f2fc2c71b6264c))
+
+### Bug Fixes
+
+- **collections:** update admin config ([57126c2](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/57126c2c25d8fe042cabe25044d116175d4770ae))
+- **styles:** remove height ([04e2802](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/04e28020f7f0f72134865dc5e14602f980ba9897))
+
 ## [2.0.0](https://github.com/hjbugajski/jesse-and-henry-payload-cms/compare/v1.0.1...v2.0.0) (2023-05-24)
 
 ### Features

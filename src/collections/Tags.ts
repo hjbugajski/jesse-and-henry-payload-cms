@@ -14,6 +14,7 @@ const Tags: CollectionConfig = {
     useAsTitle: 'value',
     group: 'Guests Collections',
     defaultColumns: ['id', 'value', 'sort'],
+    disableDuplicate: true,
   },
   defaultSort: 'sort',
   fields: [
@@ -22,6 +23,7 @@ const Tags: CollectionConfig = {
       label: 'Value',
       type: 'text',
       required: true,
+      unique: true,
     },
     {
       name: 'color',

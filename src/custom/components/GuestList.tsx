@@ -1,5 +1,3 @@
-import 'ag-grid-community/styles/ag-grid-no-native-widgets.css';
-
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import {
@@ -13,19 +11,26 @@ import { AgGridReact } from 'ag-grid-react';
 import { Pill } from 'payload/components';
 import { Eyebrow } from 'payload/components/elements';
 import { useConfig } from 'payload/components/utilities';
+import { getTranslation } from 'payload/dist/utilities/getTranslation';
+import { stringify } from 'qs';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
+import DeleteMany from './DeleteMany';
+import EditMany from './EditMany';
 import SelectEditor from './SelectEditor';
 import Tag from './Tag';
 import { Guest, Party } from '../../payload-types';
-import { PayloadGetApi, PayloadPostApi } from '../types/api';
+import { PayloadFormOnSuccess, PayloadGetApi, PayloadPostApi } from '../types/api';
 
+import 'ag-grid-community/styles/ag-grid-no-native-widgets.css';
 import './GuestList.scss';
 
 const GuestList: React.FC = (props: any) => {
   const {
-    collection: { fields },
-    data: { docs },
+    collection,
+    collection: { fields, slug },
+    data: { docs, totalDocs },
   } = props;
 
   // Refs
@@ -34,31 +39,20 @@ const GuestList: React.FC = (props: any) => {
   // State
   const [error, setError] = useState<string | null>(null);
   const [rowData, setRowData] = useState<Guest[]>([]);
+  const [selectedRows, setSelectedRows] = useState<Guest[]>([]);
 
   // Hooks
-  const { serverURL } = useConfig();
+  const {
+    serverURL,
+    routes: { api },
+  } = useConfig();
+  const { t, i18n } = useTranslation('general');
 
   // Callbacks
   const addGuest = useCallback(async () => {
-    const res = await fetch(serverURL + '/api/guests', {
-      method: 'POST',
-      credentials: 'include',
-    });
-
-    if (res.status !== 200) {
-      setError(res.statusText);
-
-      return;
-    }
-
-    const data: PayloadPostApi<Guest> = await res.json();
-
-    setRowData([data.doc, ...rowData]);
-  }, [rowData, serverURL]);
-
-  const fetchDocs = useCallback(async () => {
     try {
-      const res = await fetch(serverURL + '/api/guests?limit=250', {
+      const res = await fetch(`${serverURL}${api}/${slug}`, {
+        method: 'POST',
         credentials: 'include',
       });
 
@@ -68,13 +62,41 @@ const GuestList: React.FC = (props: any) => {
         return;
       }
 
-      const data: PayloadGetApi<Guest> = await res.json();
+      const data: PayloadPostApi<Guest> = await res.json();
 
-      setRowData([...data.docs]);
+      gridRef?.current?.api?.applyTransaction({
+        add: [data.doc],
+        addIndex: 0,
+      });
     } catch (error) {
       console.error(error);
+      setError(error.message);
     }
-  }, [serverURL]);
+  }, [rowData, serverURL]);
+
+  const fetchDocs = useCallback(
+    async (limit = 10) => {
+      try {
+        const res = await fetch(`${serverURL}${api}/${slug}?limit=${limit}`, {
+          credentials: 'include',
+        });
+
+        if (res.status !== 200) {
+          setError(res.statusText);
+
+          return;
+        }
+
+        const data: PayloadGetApi<Guest> = await res.json();
+
+        setRowData([...data.docs]);
+      } catch (error) {
+        console.error(error);
+        setError(error.message);
+      }
+    },
+    [serverURL]
+  );
 
   const getRowId = useCallback((params: GetRowIdParams<Guest>) => params.data.id, []);
 
@@ -131,7 +153,7 @@ const GuestList: React.FC = (props: any) => {
           ? params.newValue.value
           : params.newValue ?? null;
 
-        const res = await fetch(serverURL + `/api/guests/${params.data.id}`, {
+        const res = await fetch(`${serverURL}${api}/${slug}/${params.data.id}`, {
           method: 'PATCH',
           credentials: 'include',
           headers: {
@@ -147,10 +169,24 @@ const GuestList: React.FC = (props: any) => {
         }
       } catch (error) {
         console.error(error);
+        setError(error.message);
       }
     },
     [serverURL]
   );
+
+  const onDeleteMany = useCallback(() => {
+    gridRef?.current?.api?.applyTransaction({
+      remove: selectedRows,
+    });
+  }, [selectedRows]);
+
+  const onEditMany = useCallback((json: PayloadFormOnSuccess<Guest>) => {
+    gridRef?.current?.api?.deselectAll();
+    gridRef?.current?.api?.applyTransaction({
+      update: json.docs,
+    });
+  }, []);
 
   const onRowDragEnd = useCallback(
     async (e: RowDragEndEvent<Guest>) => {
@@ -170,7 +206,7 @@ const GuestList: React.FC = (props: any) => {
         }
 
         try {
-          const res = await fetch(serverURL + `/api/guests/${guest.id}`, {
+          const res = await fetch(`${serverURL}${api}/${slug}/${guest.id}`, {
             method: 'PATCH',
             credentials: 'include',
             headers: {
@@ -182,14 +218,34 @@ const GuestList: React.FC = (props: any) => {
           });
 
           if (res.status !== 200) {
+            console.error(res);
             setError(res.statusText);
           }
         } catch (error) {
           console.error(error);
+          setError(error.message);
         }
       }
     },
     [serverURL]
+  );
+
+  const onSelectionChanged = useCallback(() => {
+    const rows = gridRef?.current?.api?.getSelectedRows() ?? [];
+
+    setSelectedRows([...rows]);
+  }, []);
+
+  const stringifySelectedDocsQuery = useCallback(
+    () =>
+      stringify({
+        where: {
+          id: {
+            in: selectedRows.map((g) => g.id),
+          },
+        },
+      }),
+    [selectedRows]
   );
 
   // Memoized
@@ -203,6 +259,18 @@ const GuestList: React.FC = (props: any) => {
         rowDrag: true,
         singleClickEdit: false,
         width: 31,
+      },
+      {
+        cellClass: 'ag-cell--checkbox',
+        checkboxSelection: true,
+        editable: false,
+        headerCheckboxSelection: true,
+        headerClass: 'ag-header-cell--checkbox',
+        minWidth: 32,
+        pinned: 'left',
+        resizable: false,
+        singleClickEdit: false,
+        width: 32,
       },
       {
         field: 'first',
@@ -219,7 +287,6 @@ const GuestList: React.FC = (props: any) => {
       },
       {
         field: 'party',
-        cellClass: 'ag-cell--no-padding',
         initialWidth: 175,
         ...getTagsColumnDefs('parties'),
       },
@@ -232,7 +299,6 @@ const GuestList: React.FC = (props: any) => {
       {
         field: 'relation',
         initialWidth: 150,
-        minWidth: 120,
         ...getTagsColumnDefs('relations'),
       },
       {
@@ -259,7 +325,7 @@ const GuestList: React.FC = (props: any) => {
       {
         field: 'rsvpBrunch',
         headerName: 'RSVP Brunch',
-        cellClass: (params) => (params.node.rowPinned ? undefined : 'ag-cell--last'),
+        cellClass: 'ag-cell--last',
         headerClass: 'ag-header-cell--last',
         ...getRsvpColumnDefs('rsvpBrunch'),
       },
@@ -287,19 +353,42 @@ const GuestList: React.FC = (props: any) => {
     []
   );
 
+  // Effects
   useEffect(() => {
-    fetchDocs();
-  }, [docs, fetchDocs]);
+    if (docs) {
+      fetchDocs(totalDocs);
+    }
+  }, [docs, totalDocs, fetchDocs]);
 
   return (
     <div className="default-page-template">
       <Eyebrow />
       <div className="gutter--left gutter--right collection-list__wrap component">
         <div className="row">
-          <h1>Guests</h1>
+          <h1>{getTranslation(collection.labels.plural, i18n)}</h1>
           <Pill onClick={addGuest} className="pill margin--bottom">
-            Create New
+            {t('createNew')}
           </Pill>
+          <div className="flex--grow" />
+          {selectedRows.length > 0 && (
+            <div className="row row--selection">
+              <span className="selected-text margin--bottom">
+                {selectedRows.length} {getTranslation(collection.labels.plural, i18n)} selected
+              </span>
+              <EditMany
+                count={selectedRows.length}
+                queryParams={stringifySelectedDocsQuery()}
+                collection={collection}
+                onSuccess={onEditMany}
+              />
+              <DeleteMany
+                count={selectedRows.length}
+                collection={collection}
+                onDelete={onDeleteMany}
+                queryParams={stringifySelectedDocsQuery()}
+              />
+            </div>
+          )}
         </div>
         {error && <p>{error}</p>}
         <AgGridReact
@@ -313,6 +402,7 @@ const GuestList: React.FC = (props: any) => {
           icons={icons}
           onCellEditingStopped={onCellEditingStopped}
           onRowDragEnd={onRowDragEnd}
+          onSelectionChanged={onSelectionChanged}
           rowData={rowData}
           rowDragManaged={true}
           rowDragMultiRow={true}
@@ -320,7 +410,7 @@ const GuestList: React.FC = (props: any) => {
           rowSelection={'multiple'}
           stopEditingWhenCellsLoseFocus={true}
           suppressMovableColumns={true}
-          suppressRowClickSelection={false}
+          suppressRowClickSelection={true}
           suppressColumnVirtualisation={true}
         />
       </div>

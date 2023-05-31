@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.2.0](https://github.com/hjbugajski/jesse-and-henry-payload-cms/compare/v2.1.0...v2.2.0) (2023-05-31)
+
+### Features
+
+- **components/GuestList:** add ability to insert guest after/before any row ([9cea44b](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/9cea44bf2a10ed15680b2afec7b14e2354820d14))
+- **components:** add TextareaEditor ([7c00c8a](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/7c00c8a8a15da97d5f1249670425ca3286d250bf))
+
+### Bug Fixes
+
+- **collections/Guests:** update reorder functionality ([39882ec](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/39882ec9da820d8d35ac4d72dd607ea4406dbaa5))
+- **styles:** update variables, fix small issues ([bae5033](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/bae5033932e9bc5db45cb2f3c527779dc83ff4a5))
+
 ## [2.1.0](https://github.com/hjbugajski/jesse-and-henry-payload-cms/compare/v2.0.0...v2.1.0) (2023-05-25)
 
 ### Features

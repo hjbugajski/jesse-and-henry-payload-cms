@@ -20,6 +20,7 @@ import DeleteMany from './DeleteMany';
 import EditMany from './EditMany';
 import SelectEditor from './SelectEditor';
 import Tag from './Tag';
+import TextareaEditor from './TextareaEditor';
 import { Guest, Party } from '../../payload-types';
 import { PayloadFormOnSuccess, PayloadGetApi, PayloadPostApi } from '../types/api';
 
@@ -311,6 +312,9 @@ const GuestList: React.FC = (props: any) => {
       },
       {
         field: 'address',
+        cellEditor: TextareaEditor,
+        cellEditorPopup: true,
+        cellEditorPopupPosition: 'over',
       },
       {
         field: 'rsvpWelcomeParty',

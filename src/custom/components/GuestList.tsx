@@ -4,13 +4,14 @@ import {
   CellEditingStoppedEvent,
   ColDef,
   GetRowIdParams,
+  GridApi,
   ICellRendererParams,
   RowDragEndEvent,
 } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
 import { Pill } from 'payload/components';
 import { Eyebrow } from 'payload/components/elements';
-import { useConfig } from 'payload/components/utilities';
+import { Meta, useConfig } from 'payload/components/utilities';
 import { getTranslation } from 'payload/dist/utilities/getTranslation';
 import { stringify } from 'qs';
 import { useTranslation } from 'react-i18next';
@@ -189,53 +190,43 @@ const GuestList: React.FC = (props: any) => {
     });
   }, []);
 
-  const onRowDragEnd = useCallback(
-    async (e: RowDragEndEvent<Guest>) => {
-      const guests: Guest[] = [];
-
-      e.api.forEachNode((node) => {
-        if (node.data) {
-          guests.push(node.data);
-        }
-      });
-
-      for (let i = 0; i < guests.length; i++) {
-        const guest = guests[i];
-
-        if (guest.sort === i) {
-          continue;
-        }
-
-        try {
-          const res = await fetch(`${serverURL}${api}/${slug}/${guest.id}`, {
-            method: 'PATCH',
-            credentials: 'include',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              sort: i,
-            }),
-          });
-
-          if (res.status !== 200) {
-            console.error(res);
-            setError(res.statusText);
-          }
-        } catch (error) {
-          console.error(error);
-          setError(error.message);
-        }
-      }
-    },
-    [serverURL]
-  );
+  const onRowDragEnd = useCallback(async (e: RowDragEndEvent<Guest>) => await reorderDocs(e.api), []);
 
   const onSelectionChanged = useCallback(() => {
     const rows = gridRef?.current?.api?.getSelectedRows() ?? [];
 
     setSelectedRows([...rows]);
   }, []);
+
+  const reorderDocs = useCallback(
+    async (gridApi: GridApi<Guest>) => {
+      const docs: Guest[] = [];
+
+      gridApi.forEachNode((node) => docs.push(node.data));
+
+      try {
+        const res = await fetch(`${serverURL}${api}/${slug}/reorder`, {
+          method: 'PATCH',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            docs,
+          }),
+        });
+
+        if (res.status !== 200) {
+          console.error(res);
+          setError(res.statusText);
+        }
+      } catch (error) {
+        console.error(error);
+        setError(error.message);
+      }
+    },
+    [serverURL, api, slug]
+  );
 
   const stringifySelectedDocsQuery = useCallback(
     () =>
@@ -366,6 +357,7 @@ const GuestList: React.FC = (props: any) => {
 
   return (
     <div className="default-page-template">
+      <Meta title={getTranslation(collection.labels.plural, i18n)} />
       <Eyebrow />
       <div className="gutter--left gutter--right collection-list__wrap component">
         <div className="row">

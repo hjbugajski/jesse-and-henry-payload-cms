@@ -31,10 +31,10 @@ const beforeValidateHook: BeforeValidateHook<Guest> = async ({ data, operation, 
       } while (existingEmails.includes(newEmail));
     }
 
-    if (!sort || sort === 0) {
+    if (!sort || sort === -1) {
       const guests = await req.payload.find({ collection: 'guests' }).then((data) => data.docs as Guest[]);
 
-      newSort = guests.length ? guests[0].sort - 1 : 0;
+      newSort = guests.length ?? 0;
     }
 
     return { ...data, email: newEmail, sort: newSort };
@@ -106,8 +106,14 @@ const Guests: CollectionConfig = {
     {
       path: '/',
       method: 'post',
-      handler: async (req, res) =>
-        await req.payload
+      handler: async (req, res) => {
+        if (!isAdmin({ req })) {
+          return res.status(401).json({
+            message: 'Unauthorized',
+          });
+        }
+
+        return await req.payload
           .create({
             collection: 'guests',
             data: {
@@ -121,7 +127,47 @@ const Guests: CollectionConfig = {
               doc,
             })
           )
-          .catch((err) => res.status(500).json(err)),
+          .catch((err) => res.status(500).json(err));
+      },
+    },
+    {
+      path: '/reorder',
+      method: 'patch',
+      handler: async (req, res) => {
+        if (!isAdmin({ req })) {
+          return res.status(401).json({
+            message: 'Unauthorized',
+          });
+        }
+
+        const reqDocs: Guest[] = req.body.docs ?? [];
+        const docs = reqDocs.filter((guest: Guest, index: number) => guest.sort !== index);
+
+        return await Promise.all(
+          docs.map(
+            (guest: Guest, index: number) =>
+              new Promise(
+                async (resolve, reject) =>
+                  await req.payload
+                    .update({
+                      collection: 'guests',
+                      id: guest.id,
+                      data: {
+                        sort: index,
+                      },
+                    })
+                    .then(resolve, reject)
+              )
+          )
+        )
+          .then((results) =>
+            res.status(200).json({
+              message: 'Guests reordered.',
+              results,
+            })
+          )
+          .catch((err) => res.status(500).json(err));
+      },
     },
   ],
   fields: [
@@ -218,6 +264,9 @@ const Guests: CollectionConfig = {
       label: 'Sort',
       type: 'number',
       defaultValue: 0,
+      admin: {
+        position: 'sidebar',
+      },
       access: {
         create: isAdminFieldLevel,
         read: isAdminFieldLevel,

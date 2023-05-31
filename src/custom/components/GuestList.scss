@@ -171,8 +171,9 @@
     appearance: none;
     background-color: transparent;
     border: 1px solid var(--color-border);
-    border-radius: 3px;
+    border-radius: var(--border-radius);
     outline: none;
+    transition: all 150ms ease 0s;
 
     &:indeterminate {
       background-color: var(--color-background-subtle);
@@ -234,17 +235,11 @@
 }
 
 .ag-text-field-input {
-  padding: 0 8px;
+  padding: 0 7px;
   font: inherit;
   color: inherit;
 
   &:focus {
     background-color: var(--color-background-element);
   }
-}
-
-.text--help {
-  font-size: 0.875rem;
-  font-weight: var(--font-weight-regular);
-  color: var(--color-low-contrast);
 }

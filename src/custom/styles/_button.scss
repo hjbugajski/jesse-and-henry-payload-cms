@@ -1,0 +1,19 @@
+.button--icon {
+  all: unset;
+
+  border-radius: var(--border-radius);
+  min-width: 24px;
+  max-width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-low-contrast);
+  transition: all 150ms ease 0s;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color-background-element);
+    color: var(--color-high-contrast);
+  }
+}

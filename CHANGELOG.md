@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.2.1](https://github.com/hjbugajski/jesse-and-henry-payload-cms/compare/v2.2.0...v2.2.1) (2023-06-01)
+
+### Bug Fixes
+
+- **components/GuestList:** prevent cell editing from completing with shift+enter ([2a54a04](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/2a54a04df9b319562e95d06958c3c8c995650f8e))
+- **Guests/GuestList:** properly set sort index and reorder documents ([1401464](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/1401464a16607b3cbecc7cd65afdf572b0d2b084))
+
 ## [2.2.0](https://github.com/hjbugajski/jesse-and-henry-payload-cms/compare/v2.1.0...v2.2.0) (2023-05-31)
 
 ### Features

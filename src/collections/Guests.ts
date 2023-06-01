@@ -11,13 +11,14 @@ dotenv.config();
 const beforeValidateHook: BeforeValidateHook<Guest> = async ({ data, operation, req }) => {
   if (operation === 'create') {
     const { email, sort } = data;
+    const limit = await req.payload.find({ collection: 'guests' }).then((data) => data.totalDocs);
     let newEmail = email;
     let newSort = data.sort;
 
     if (!email || email === `new${process.env.EMAIL}`) {
       const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
       const existingEmails = await req.payload
-        .find({ collection: 'guests' })
+        .find({ collection: 'guests', limit })
         .then((data) => data.docs.map((doc: Guest) => doc.email));
 
       do {
@@ -31,8 +32,8 @@ const beforeValidateHook: BeforeValidateHook<Guest> = async ({ data, operation, 
       } while (existingEmails.includes(newEmail));
     }
 
-    if (!sort || sort === -1) {
-      const guests = await req.payload.find({ collection: 'guests' }).then((data) => data.docs as Guest[]);
+    if ((!sort && sort !== 0) || sort === -1) {
+      const guests = await req.payload.find({ collection: 'guests', limit }).then((data) => data.docs as Guest[]);
 
       newSort = guests.length ?? 0;
     }
@@ -141,23 +142,16 @@ const Guests: CollectionConfig = {
         }
 
         const reqDocs: Guest[] = req.body.docs ?? [];
-        const docs = reqDocs.filter((guest: Guest, index: number) => guest.sort !== index);
 
         return await Promise.all(
-          docs.map(
-            (guest: Guest, index: number) =>
-              new Promise(
-                async (resolve, reject) =>
-                  await req.payload
-                    .update({
-                      collection: 'guests',
-                      id: guest.id,
-                      data: {
-                        sort: index,
-                      },
-                    })
-                    .then(resolve, reject)
-              )
+          reqDocs.map((guest: Guest, index: number) =>
+            req.payload.update({
+              collection: 'guests',
+              id: guest.id,
+              data: {
+                sort: index,
+              },
+            })
           )
         )
           .then((results) =>

@@ -94,6 +94,9 @@ const GuestList: React.FC = (props: any) => {
         const res = await fetch(`${serverURL}${api}/${slug}`, {
           method: 'POST',
           credentials: 'include',
+          body: JSON.stringify({
+            sort: addIndex,
+          }),
         });
 
         if (res.status !== 200) {
@@ -104,20 +107,20 @@ const GuestList: React.FC = (props: any) => {
 
         const data: PayloadPostApi<Guest> = await res.json();
 
-        gridRef?.current?.api?.applyTransaction({
+        gridRef.current.api.applyTransaction({
           add: [data.doc],
           addIndex,
         });
 
-        await reorderDocs(gridRef?.current?.api);
+        await reorderDocs(gridRef.current.api);
 
-        gridRef?.current?.api?.ensureIndexVisible(gridRef?.current?.api?.getRowNode(data.doc.id)?.rowIndex);
+        gridRef.current.api.ensureIndexVisible(gridRef.current.api.getRowNode(data.doc.id).rowIndex);
       } catch (error) {
         console.error(error);
         setError(error.message);
       }
     },
-    [rowData, serverURL, api, slug]
+    [api, gridRef, serverURL, slug]
   );
 
   const fetchDocs = useCallback(
@@ -141,7 +144,7 @@ const GuestList: React.FC = (props: any) => {
         setError(error.message);
       }
     },
-    [serverURL]
+    [api, serverURL, slug]
   );
 
   const getRowId = useCallback((params: GetRowIdParams<Guest>) => params.data.id, []);
@@ -211,6 +214,7 @@ const GuestList: React.FC = (props: any) => {
         });
 
         if (res.status !== 200) {
+          console.error(res.statusText);
           setError(res.statusText);
         }
       } catch (error) {
@@ -218,35 +222,40 @@ const GuestList: React.FC = (props: any) => {
         setError(error.message);
       }
     },
-    [serverURL]
+    [api, serverURL, slug]
   );
 
   const onDeleteMany = useCallback(() => {
-    gridRef?.current?.api?.applyTransaction({
+    gridRef.current.api.applyTransaction({
       remove: selectedRows,
     });
-  }, [selectedRows]);
+  }, [gridRef, selectedRows]);
 
-  const onEditMany = useCallback((json: PayloadFormOnSuccess<Guest>) => {
-    gridRef?.current?.api?.deselectAll();
-    gridRef?.current?.api?.applyTransaction({
-      update: json.docs,
-    });
-  }, []);
+  const onEditMany = useCallback(
+    (json: PayloadFormOnSuccess<Guest>) => {
+      gridRef.current.api.deselectAll();
+      gridRef.current.api.applyTransaction({
+        update: json.docs,
+      });
+    },
+    [gridRef]
+  );
 
   const onRowDragEnd = useCallback(async (e: RowDragEndEvent<Guest>) => await reorderDocs(e.api), []);
 
   const onSelectionChanged = useCallback(() => {
-    const rows = gridRef?.current?.api?.getSelectedRows() ?? [];
+    const rows = gridRef.current.api.getSelectedRows() ?? [];
 
     setSelectedRows([...rows]);
-  }, []);
+  }, [gridRef]);
 
   const reorderDocs = useCallback(
     async (gridApi: GridApi<Guest>) => {
       const docs: Guest[] = [];
 
-      gridApi.forEachNode((node) => docs.push(node.data));
+      gridApi.forEachNode((node) => {
+        docs.push(node.data);
+      });
 
       try {
         const res = await fetch(`${serverURL}${api}/${slug}/reorder`, {
@@ -269,7 +278,7 @@ const GuestList: React.FC = (props: any) => {
         setError(error.message);
       }
     },
-    [serverURL, api, slug]
+    [api, serverURL, slug]
   );
 
   const stringifySelectedDocsQuery = useCallback(
@@ -321,6 +330,7 @@ const GuestList: React.FC = (props: any) => {
       {
         field: 'first',
         initialWidth: 125,
+        pinned: 'left',
         singleClickEdit: false,
         cellRenderer: (params: ICellRendererParams<Guest, string>) => (
           <Link to={`/admin/collections/guests/${params.data.id}`}>{params.value ?? '<No First Name>'}</Link>
@@ -378,7 +388,7 @@ const GuestList: React.FC = (props: any) => {
         ...getRsvpColumnDefs('rsvpBrunch'),
       },
     ],
-    [getRsvpColumnDefs, getTagsColumnDefs]
+    [addGuest, getRsvpColumnDefs, getTagsColumnDefs]
   );
 
   const defaultColDef: ColDef<Guest> = useMemo(

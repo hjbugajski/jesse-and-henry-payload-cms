@@ -369,6 +369,7 @@ const GuestList: React.FC = (props: any) => {
         cellEditor: TextareaEditor,
         cellEditorPopup: true,
         cellEditorPopupPosition: 'over',
+        suppressKeyboardEvent: ({ editing, event }) => editing && event.shiftKey && event.key === 'Enter',
       },
       {
         field: 'rsvpWelcomeParty',

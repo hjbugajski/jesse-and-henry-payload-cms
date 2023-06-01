@@ -1,7 +1,7 @@
 {
   "name": "jesse-and-henry-payload-cms",
   "description": "Payload project for Jesse's and Henry's wedding.",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "main": "dist/server.js",
   "license": "MIT",
   "scripts": {

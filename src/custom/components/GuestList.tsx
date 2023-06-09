@@ -213,9 +213,17 @@ const GuestList: React.FC = (props: any) => {
           }),
         });
 
-        if (res.status !== 200) {
-          console.error(res.statusText);
-          setError(res.statusText);
+        if (res.status === 200) {
+          const data = await res.json();
+
+          gridRef.current.api.applyTransaction({
+            update: [data.doc],
+          });
+        } else {
+          const json = await res.json();
+
+          console.error(json);
+          setError(json.errors[0].message);
         }
       } catch (error) {
         console.error(error);
@@ -341,6 +349,10 @@ const GuestList: React.FC = (props: any) => {
         initialWidth: 150,
       },
       {
+        field: 'middle',
+        initialWidth: 150,
+      },
+      {
         field: 'party',
         initialWidth: 175,
         ...getTagsColumnDefs('parties'),
@@ -358,7 +370,6 @@ const GuestList: React.FC = (props: any) => {
       },
       {
         field: 'email',
-        cellClass: (params) => (params.value.includes('@jesseandhenry.com') ? 'text--low-contrast' : undefined),
       },
       {
         field: 'phone',

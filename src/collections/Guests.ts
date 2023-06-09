@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import { BeforeValidateHook } from 'payload/dist/collections/config/types';
 import { CollectionConfig, Field } from 'payload/types';
 
-import { isAdmin, isAdminFieldLevel, isAdminOrSelf, isAdminOrSelfFieldLevel } from '../access';
+import { isAdmin, isAdminFieldLevel, isAdminSelfOrParty } from '../access';
 import GuestList from '../custom/components/GuestList';
 import { Guest } from '../payload-types';
 
@@ -155,8 +155,8 @@ const Guests: CollectionConfig = {
   defaultSort: 'sort',
   access: {
     create: isAdmin,
-    read: isAdminOrSelf,
-    update: isAdminOrSelf,
+    read: isAdminSelfOrParty,
+    update: isAdminSelfOrParty,
     delete: isAdmin,
   },
   endpoints: [
@@ -227,7 +227,7 @@ const Guests: CollectionConfig = {
       type: 'email',
       access: {
         create: isAdminFieldLevel,
-        read: isAdminOrSelfFieldLevel,
+        read: isAdminFieldLevel,
         update: isAdminFieldLevel,
       },
     },

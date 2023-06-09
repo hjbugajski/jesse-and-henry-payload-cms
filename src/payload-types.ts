@@ -18,6 +18,7 @@ export interface Config {
 export interface Guest {
   id: string;
   first?: string;
+  middle?: string;
   last?: string;
   party?: string | Party;
   side?: string | Side;

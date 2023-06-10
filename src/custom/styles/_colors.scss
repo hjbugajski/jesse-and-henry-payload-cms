@@ -1,0 +1,79 @@
+.green--background {
+  background-color: var(--green2);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--green1);
+  }
+}
+
+.teal--background {
+  background-color: var(--teal2);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--teal1);
+  }
+}
+
+.cyan--background {
+  background-color: var(--cyan2);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--cyan1);
+  }
+}
+
+.blue--background {
+  background-color: var(--blue2);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--blue1);
+  }
+}
+
+.violet--background {
+  background-color: var(--violet2);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--violet1);
+  }
+}
+
+.purple--background {
+  background-color: var(--purple2);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--purple1);
+  }
+}
+
+.plum--background {
+  background-color: var(--plum2);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--plum1);
+  }
+}
+
+.pink--background {
+  background-color: var(--pink2);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--pink1);
+  }
+}
+
+.red--background {
+  background-color: var(--red2);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--red1);
+  }
+}
+
+.orange--background {
+  background-color: var(--orange2);
+
+  @media (prefers-color-scheme: dark) {
+    background-color: var(--orange1);
+  }
+}

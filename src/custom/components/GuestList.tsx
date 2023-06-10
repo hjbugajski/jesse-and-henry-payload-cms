@@ -7,6 +7,7 @@ import {
   GetRowIdParams,
   GridApi,
   ICellRendererParams,
+  RowClassParams,
   RowDragEndEvent,
 } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
@@ -423,6 +424,32 @@ const GuestList: React.FC = (props: any) => {
     []
   );
 
+  const rowClassRules = useMemo(
+    () => ({
+      'green--background': (params: RowClassParams) => params.data.party?.color === 'green',
+      'teal--background': (params: RowClassParams) => params.data.party?.color === 'teal',
+      'cyan--background': (params: RowClassParams) => params.data.party?.color === 'cyan',
+      'blue--background': (params: RowClassParams) => params.data.party?.color === 'blue',
+      'violet--background': (params: RowClassParams) => params.data.party?.color === 'violet',
+      'purple--background': (params: RowClassParams) => params.data.party?.color === 'purple',
+      'plum--background': (params: RowClassParams) => params.data.party?.color === 'plum',
+      'pink--background': (params: RowClassParams) => params.data.party?.color === 'pink',
+      'red--background': (params: RowClassParams) => params.data.party?.color === 'red',
+      'orange--background': (params: RowClassParams) => params.data.party?.color === 'orange',
+      'border-bottom--none': (params: RowClassParams) => {
+        const rowParty = params.data.party?.id ?? null;
+        const rows = [];
+
+        params.api.forEachNode((node) => rows.push(node));
+
+        const nextRowParty = rows[(params?.node?.rowIndex ?? 0) + 1]?.data.party?.id ?? null;
+
+        return rowParty && nextRowParty && rowParty === nextRowParty;
+      },
+    }),
+    []
+  );
+
   // Effects
   useEffect(() => {
     if (docs) {
@@ -474,15 +501,16 @@ const GuestList: React.FC = (props: any) => {
           onCellEditingStopped={onCellEditingStopped}
           onRowDragEnd={onRowDragEnd}
           onSelectionChanged={onSelectionChanged}
+          rowClassRules={rowClassRules}
           rowData={rowData}
           rowDragManaged={true}
           rowDragMultiRow={true}
           rowHeight={36}
           rowSelection={'multiple'}
           stopEditingWhenCellsLoseFocus={true}
+          suppressColumnVirtualisation={true}
           suppressMovableColumns={true}
           suppressRowClickSelection={true}
-          suppressColumnVirtualisation={true}
         />
       </div>
     </div>

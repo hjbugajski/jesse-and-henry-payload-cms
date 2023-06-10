@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.3.0](https://github.com/hjbugajski/jesse-and-henry-payload-cms/compare/v2.2.1...v2.3.0) (2023-06-10)
+
+### Features
+
+- **collections/Guests:** automatically update guest email and password ([4477c3a](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/4477c3abd504c2aa1031f71e54b43eaedb0d4510))
+- **collections/Guests:** automatically update guest email and password ([38a8362](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/38a8362c7eba668452c3fc5e66a793ff1ab9815e))
+- **collections/Guests:** limit access to admin, party, or self ([995fa42](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/995fa42613147bc57fc8a9d2e89c80307629ff99))
+- **collections/Guests:** limit access to admin, party, or self ([0a109a2](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/0a109a2348e303b79bb25a29d33207e999e99787))
+
+### Bug Fixes
+
+- **collections/Parties:** add limit to find all docs ([bc31bd0](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/bc31bd095377b43955478de3f084860f9cba44ab))
+- **collections/Parties:** add limit to local API to return all docs ([c47fb8c](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/c47fb8ce95b7682bac2ac2a3e3b029ddb2dfc49e))
+
 ## [2.2.1](https://github.com/hjbugajski/jesse-and-henry-payload-cms/compare/v2.2.0...v2.2.1) (2023-06-01)
 
 ### Bug Fixes

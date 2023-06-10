@@ -2,22 +2,20 @@ import dotenv from 'dotenv';
 import { BeforeValidateHook } from 'payload/dist/collections/config/types';
 import { CollectionConfig, Field } from 'payload/types';
 
-import { isAdmin, isAdminFieldLevel, isAdminSelfOrParty } from '../access';
+import { isAdmin, isAdminFieldLevel, isAdminOrSelf, isAdminOrSelfFieldLevel } from '../access';
 import GuestList from '../custom/components/GuestList';
 import { Guest } from '../payload-types';
 
 dotenv.config();
 
-const cleanString = (party: string) => party.toLowerCase().replace(/[^a-zA-Z]/g, '');
-
-const beforeValidateHook: BeforeValidateHook<Guest> = async ({ data, operation, req, originalDoc }) => {
+const beforeValidateHook: BeforeValidateHook<Guest> = async ({ data, operation, req }) => {
   if (operation === 'create') {
-    const { email, first, middle, last, sort } = data;
+    const { email, sort } = data;
     const limit = await req.payload.find({ collection: 'guests' }).then((data) => data.totalDocs);
     let newEmail = email;
     let newSort = data.sort;
 
-    if ((!email || email === `new${process.env.EMAIL}`) && (!first || !last)) {
+    if (!email || email === `new${process.env.EMAIL}`) {
       const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
       const existingEmails = await req.payload
         .find({ collection: 'guests', limit })
@@ -34,10 +32,6 @@ const beforeValidateHook: BeforeValidateHook<Guest> = async ({ data, operation, 
       } while (existingEmails.includes(newEmail));
     }
 
-    if ((!email || email === `new${process.env.EMAIL}`) && first && last) {
-      newEmail = `${cleanString(first)}${cleanString(middle ?? '')}${cleanString(last)}${process.env.EMAIL}`;
-    }
-
     if ((!sort && sort !== 0) || sort === -1) {
       const guests = await req.payload.find({ collection: 'guests', limit }).then((data) => data.docs as Guest[]);
 
@@ -46,58 +40,9 @@ const beforeValidateHook: BeforeValidateHook<Guest> = async ({ data, operation, 
 
     return { ...data, email: newEmail, sort: newSort };
   }
-
-  if (operation === 'update') {
-    let newData = data;
-
-    const updatePassword = async (party: string) => {
-      const token = await req.payload.forgotPassword({
-        collection: 'guests',
-        data: {
-          email: originalDoc.email,
-        },
-        req,
-      });
-
-      await req.payload.resetPassword({
-        collection: 'guests',
-        data: {
-          token,
-          password: `${process.env.GUEST_PASSWORD}-${party}`,
-        },
-        overrideAccess: true,
-        req,
-      });
-    };
-
-    if (data.party) {
-      const code = await req.payload
-        .findByID({
-          collection: 'parties',
-          id: data.party as string,
-        })
-        .then((data) => data.code);
-
-      await updatePassword(code);
-    } else if (data.party === null) {
-      await updatePassword('party');
-    }
-
-    const first = data.first ?? originalDoc.first ?? '';
-    const middle = data.middle ?? originalDoc.middle ?? '';
-    const last = data.last ?? originalDoc.last ?? '';
-    const email = `${cleanString(first)}${cleanString(middle)}${cleanString(last)}${process.env.EMAIL}`;
-
-    if (first && last && email !== originalDoc.email) {
-      newData = {
-        ...data,
-        email,
-      };
-    }
-
-    return newData;
-  }
 };
+
+const sanitizeParty = (party: string) => party.toLowerCase().replace(/[^a-zA-Z]/g, '');
 
 const rsvpOptionField: Field = {
   name: 'rsvpOption',
@@ -129,7 +74,6 @@ const Guests: CollectionConfig = {
     },
     defaultColumns: [
       'first',
-      'middle',
       'last',
       'party',
       'side',
@@ -155,8 +99,8 @@ const Guests: CollectionConfig = {
   defaultSort: 'sort',
   access: {
     create: isAdmin,
-    read: isAdminSelfOrParty,
-    update: isAdminSelfOrParty,
+    read: isAdminOrSelf,
+    update: isAdminOrSelf,
     delete: isAdmin,
   },
   endpoints: [
@@ -175,7 +119,7 @@ const Guests: CollectionConfig = {
             collection: 'guests',
             data: {
               ...req.body,
-              password: `${process.env.GUEST_PASSWORD}-${cleanString(req.body.party ?? 'party')}`,
+              password: `${process.env.GUEST_PASSWORD}-${sanitizeParty(req.body.party ?? 'party')}`,
             },
           })
           .then((doc) =>
@@ -227,18 +171,13 @@ const Guests: CollectionConfig = {
       type: 'email',
       access: {
         create: isAdminFieldLevel,
-        read: isAdminFieldLevel,
+        read: isAdminOrSelfFieldLevel,
         update: isAdminFieldLevel,
       },
     },
     {
       name: 'first',
       label: 'First Name',
-      type: 'text',
-    },
-    {
-      name: 'middle',
-      label: 'Middle Name',
       type: 'text',
     },
     {

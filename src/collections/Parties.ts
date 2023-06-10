@@ -7,9 +7,8 @@ import { Party } from '../payload-types';
 const beforeValidateHook: BeforeValidateHook<Party> = async ({ data, operation, req }) => {
   if (operation === 'create') {
     const characters = 'abcdefghijklmnopqrstuvwxyz';
-    const limit = await req.payload.find({ collection: 'parties' }).then((data) => data.totalDocs);
     const existingCodes = await req.payload
-      .find({ collection: 'parties', limit })
+      .find({ collection: 'parties' })
       .then((data) => data.docs.map((doc: Party) => doc.code));
     let code = '';
 

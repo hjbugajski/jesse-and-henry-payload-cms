@@ -18,6 +18,7 @@ export interface Config {
 export interface Guest {
   id: string;
   first?: string;
+  middle?: string;
   last?: string;
   party?: string | Party;
   side?: string | Side;
@@ -33,6 +34,8 @@ export interface Guest {
   email?: string;
   resetPasswordToken?: string;
   resetPasswordExpiration?: string;
+  salt?: string;
+  hash?: string;
   loginAttempts?: number;
   lockUntil?: string;
   password?: string;
@@ -102,6 +105,8 @@ export interface User {
   email?: string;
   resetPasswordToken?: string;
   resetPasswordExpiration?: string;
+  salt?: string;
+  hash?: string;
   loginAttempts?: number;
   lockUntil?: string;
   password?: string;

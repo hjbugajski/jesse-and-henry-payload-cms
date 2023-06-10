@@ -7,6 +7,7 @@ import {
   GetRowIdParams,
   GridApi,
   ICellRendererParams,
+  RowClassParams,
   RowDragEndEvent,
 } from 'ag-grid-community';
 import { AgGridReact } from 'ag-grid-react';
@@ -213,9 +214,17 @@ const GuestList: React.FC = (props: any) => {
           }),
         });
 
-        if (res.status !== 200) {
-          console.error(res.statusText);
-          setError(res.statusText);
+        if (res.status === 200) {
+          const data = await res.json();
+
+          gridRef.current.api.applyTransaction({
+            update: [data.doc],
+          });
+        } else {
+          const json = await res.json();
+
+          console.error(json);
+          setError(json.errors[0].message);
         }
       } catch (error) {
         console.error(error);
@@ -341,6 +350,10 @@ const GuestList: React.FC = (props: any) => {
         initialWidth: 150,
       },
       {
+        field: 'middle',
+        initialWidth: 120,
+      },
+      {
         field: 'party',
         initialWidth: 175,
         ...getTagsColumnDefs('parties'),
@@ -358,7 +371,6 @@ const GuestList: React.FC = (props: any) => {
       },
       {
         field: 'email',
-        cellClass: (params) => (params.value.includes('@jesseandhenry.com') ? 'text--low-contrast' : undefined),
       },
       {
         field: 'phone',
@@ -408,6 +420,32 @@ const GuestList: React.FC = (props: any) => {
         '<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16" fill="currentColor" class="text--low-contrast"><path d="M480-81.413 304.348-257.065 363-315.717l75.5 75.499V-438.5H240.218l75.499 75.5-58.652 58.652L81.413-480l175.652-175.652L315.717-597l-75.499 75.5H438.5v-198.282L363-644.283l-58.652-58.652L480-878.587l175.652 175.652L597-644.283l-75.5-75.499V-521.5h198.282L644.283-597l58.652-58.652L878.587-480 702.935-304.348 644.283-363l75.499-75.5H521.5v198.282l75.5-75.499 58.652 58.652L480-81.413Z"/></svg>',
       rowDrag:
         '<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16" fill="currentColor" class="text--low-contrast"><path d="M349.911-160Q321-160 300.5-180.589q-20.5-20.588-20.5-49.5Q280-259 300.589-279.5q20.588-20.5 49.5-20.5Q379-300 399.5-279.411q20.5 20.588 20.5 49.5Q420-201 399.411-180.5q-20.588 20.5-49.5 20.5Zm260 0Q581-160 560.5-180.589q-20.5-20.588-20.5-49.5Q540-259 560.589-279.5q20.588-20.5 49.5-20.5Q639-300 659.5-279.411q20.5 20.588 20.5 49.5Q680-201 659.411-180.5q-20.588 20.5-49.5 20.5Zm-260-250Q321-410 300.5-430.589q-20.5-20.588-20.5-49.5Q280-509 300.589-529.5q20.588-20.5 49.5-20.5Q379-550 399.5-529.411q20.5 20.588 20.5 49.5Q420-451 399.411-430.5q-20.588 20.5-49.5 20.5Zm260 0Q581-410 560.5-430.589q-20.5-20.588-20.5-49.5Q540-509 560.589-529.5q20.588-20.5 49.5-20.5Q639-550 659.5-529.411q20.5 20.588 20.5 49.5Q680-451 659.411-430.5q-20.588 20.5-49.5 20.5Zm-260-250Q321-660 300.5-680.589q-20.5-20.588-20.5-49.5Q280-759 300.589-779.5q20.588-20.5 49.5-20.5Q379-800 399.5-779.411q20.5 20.588 20.5 49.5Q420-701 399.411-680.5q-20.588 20.5-49.5 20.5Zm260 0Q581-660 560.5-680.589q-20.5-20.588-20.5-49.5Q540-759 560.589-779.5q20.588-20.5 49.5-20.5Q639-800 659.5-779.411q20.5 20.588 20.5 49.5Q680-701 659.411-680.5q-20.588 20.5-49.5 20.5Z"/></svg>',
+    }),
+    []
+  );
+
+  const rowClassRules = useMemo(
+    () => ({
+      'green--background': (params: RowClassParams) => params.data.party?.color === 'green',
+      'teal--background': (params: RowClassParams) => params.data.party?.color === 'teal',
+      'cyan--background': (params: RowClassParams) => params.data.party?.color === 'cyan',
+      'blue--background': (params: RowClassParams) => params.data.party?.color === 'blue',
+      'violet--background': (params: RowClassParams) => params.data.party?.color === 'violet',
+      'purple--background': (params: RowClassParams) => params.data.party?.color === 'purple',
+      'plum--background': (params: RowClassParams) => params.data.party?.color === 'plum',
+      'pink--background': (params: RowClassParams) => params.data.party?.color === 'pink',
+      'red--background': (params: RowClassParams) => params.data.party?.color === 'red',
+      'orange--background': (params: RowClassParams) => params.data.party?.color === 'orange',
+      'border-bottom--none': (params: RowClassParams) => {
+        const rowParty = params.data.party?.id ?? null;
+        const rows = [];
+
+        params.api.forEachNode((node) => rows.push(node));
+
+        const nextRowParty = rows[(params?.node?.rowIndex ?? 0) + 1]?.data.party?.id ?? null;
+
+        return rowParty && nextRowParty && rowParty === nextRowParty;
+      },
     }),
     []
   );
@@ -463,15 +501,16 @@ const GuestList: React.FC = (props: any) => {
           onCellEditingStopped={onCellEditingStopped}
           onRowDragEnd={onRowDragEnd}
           onSelectionChanged={onSelectionChanged}
+          rowClassRules={rowClassRules}
           rowData={rowData}
           rowDragManaged={true}
           rowDragMultiRow={true}
           rowHeight={36}
           rowSelection={'multiple'}
           stopEditingWhenCellsLoseFocus={true}
+          suppressColumnVirtualisation={true}
           suppressMovableColumns={true}
           suppressRowClickSelection={true}
-          suppressColumnVirtualisation={true}
         />
       </div>
     </div>

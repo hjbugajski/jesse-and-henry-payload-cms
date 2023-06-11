@@ -59,17 +59,24 @@ const beforeValidateHook: BeforeValidateHook<Guest> = async ({ data, operation, 
   if (operation === 'update') {
     let newData = data;
 
-    if (data.first || data.last || data.middle || data.middle === '') {
-      const first = data.first ?? originalDoc.first;
-      const last = data.last ?? originalDoc.last;
-      const middleName = data.middle
-        ? `.${cleanString(data.middle)}`
-        : data.middle !== '' && originalDoc.middle
-        ? `.${cleanString(originalDoc.middle)}`
-        : '';
-      const email = `${cleanString(first)}${middleName}.${cleanString(last)}${process.env.EMAIL}`;
+    if (data.first || data.last || data.middle || data.middle === '' || data.email === '') {
+      const first = data.first ?? originalDoc.first ?? '';
+      const last = data.last ?? originalDoc.last ?? '';
 
-      newData = { ...newData, email };
+      if (first && last) {
+        const middleName = data.middle
+          ? `.${cleanString(data.middle)}`
+          : data.middle !== '' && originalDoc.middle
+          ? `.${cleanString(originalDoc.middle)}`
+          : '';
+        const email = `${cleanString(first)}${middleName}.${cleanString(last)}${process.env.EMAIL}`;
+
+        newData = { ...newData, email };
+      } else {
+        const email = await generateRandomEmail(req, limit);
+
+        newData = { ...newData, email };
+      }
     }
 
     if (data.first === '' || data.last === '') {

@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.3.1](https://github.com/hjbugajski/jesse-and-henry-payload-cms/compare/v2.3.0...v2.3.1) (2023-06-11)
+
+### Bug Fixes
+
+- **collections/Guests:** update email generation logic ([acd2394](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/acd2394be0423347ea37a86361b6dc15bea5a345))
+
 ## [2.3.0](https://github.com/hjbugajski/jesse-and-henry-payload-cms/compare/v2.2.1...v2.3.0) (2023-06-10)
 
 ### Features

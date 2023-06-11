@@ -534,24 +534,24 @@
   resolved "https://registry.yarnpkg.com/@faceless-ui/window-info/-/window-info-2.1.1.tgz#ed1474a60ab794295bca4c29e295b1e11a584d22"
   integrity sha512-gMAgda7beR4CNpBIXjgRVn97ek0LG3PAj9lxmoYdg574IEzLFZAh3eAYtTaS2XLKgb4+IHhsuBzlGmHbeOo2Aw==
 
-"@floating-ui/core@^1.2.6":
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.2.6.tgz#d21ace437cc919cdd8f1640302fa8851e65e75c0"
-  integrity sha512-EvYTiXet5XqweYGClEmpu3BoxmsQ4hkj3QaYA6qEnigCWffTP3vNRwBReTdrwDwo7OoJ3wM8Uoe9Uk4n+d4hfg==
+"@floating-ui/core@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.3.0.tgz#113bc85fa102cf890ae801668f43ee265c547a09"
+  integrity sha512-vX1WVAdPjZg9DkDkC+zEx/tKtnST6/qcNpwcjeBgco3XRNHz5PUA+ivi/yr6G3o0kMR60uKBJcfOdfzOFI7PMQ==
 
-"@floating-ui/dom@^1.0.1", "@floating-ui/dom@^1.2.7":
-  version "1.2.9"
-  resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.2.9.tgz#b9ed1c15d30963419a6736f1b7feb350dd49c603"
-  integrity sha512-sosQxsqgxMNkV3C+3UqTS6LxP7isRLwX8WMepp843Rb3/b0Wz8+MdUkxJksByip3C2WwLugLHN1b4ibn//zKwQ==
+"@floating-ui/dom@^1.0.1", "@floating-ui/dom@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.3.0.tgz#69456f2164fc3d33eb40837686eaf71537235ac9"
+  integrity sha512-qIAwejE3r6NeA107u4ELDKkH8+VtgRKdXqtSPaKflL2S2V+doyN+Wt9s5oHKXPDo4E8TaVXaHT3+6BbagH31xw==
   dependencies:
-    "@floating-ui/core" "^1.2.6"
+    "@floating-ui/core" "^1.3.0"
 
 "@floating-ui/react-dom@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@floating-ui/react-dom/-/react-dom-2.0.0.tgz#7514baac526c818892bbcc84e1c3115008c029f9"
-  integrity sha512-Ke0oU3SeuABC2C4OFu2mSAwHIP5WUiV98O9YWoHV4Q5aT6E9k06DV0Khi5uYspR8xmmBk08t8ZDcz3TR3ARkEg==
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@floating-ui/react-dom/-/react-dom-2.0.1.tgz#7972a4fc488a8c746cded3cfe603b6057c308a91"
+  integrity sha512-rZtAmSht4Lry6gdhAJDrCp/6rKN7++JnL1/Anbr/DdeyYXQPxvg/ivrbYvJulbRf4vL8b212suwMM2lxbv+RQA==
   dependencies:
-    "@floating-ui/dom" "^1.2.7"
+    "@floating-ui/dom" "^1.3.0"
 
 "@hapi/hoek@^9.0.0":
   version "9.3.0"
@@ -1173,9 +1173,9 @@
   integrity sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==
 
 "@types/node@*":
-  version "20.2.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.2.6.tgz#f8f4cdcf9bc74fffcb44a9e1e3f3586d583dac24"
-  integrity sha512-GQBWUtGoefMEOx/vu+emHEHU5aw6JdDoEtZhoBrHFPZbA/YNRFfN996XbBASEWdvmLSLyv9FKYppYGyZjCaq/g==
+  version "20.3.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.3.0.tgz#719498898d5defab83c3560f45d8498f58d11938"
+  integrity sha512-cumHmIAf6On83X7yP+LrsEyUOf/YlociZelmpRYaGFydoaPdxdt80MAbu6vWerQT2COCp2nPvHdsbD7tHn/YlQ==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.1"
@@ -2045,9 +2045,9 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30001464, caniuse-lite@^1.0.30001489:
-  version "1.0.30001498"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001498.tgz#84e4ee2d03e0e4f8a04a508853b75a980c703201"
-  integrity sha512-LFInN2zAwx3ANrGCDZ5AKKJroHqNKyjXitdV5zRIVIaQlXKj3GmxUKagoKsjqUfckpAObPCEWnk5EeMlyMWcgw==
+  version "1.0.30001499"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001499.tgz#0235c127d9795c82aaf0a7f43e24018549dac659"
+  integrity sha512-IhoQqRrW6WiecFcfZgoJS1YLEN1/HR1vHP5WNgjCARRW7KUNToHHTX3FrwCM+y4zkRa48D9rE90WFYc2IWhDWQ==
 
 chalk@5.2.0:
   version "5.2.0"
@@ -3267,9 +3267,9 @@ es-get-iterator@^1.1.3:
     stop-iteration-iterator "^1.0.0"
 
 es-module-lexer@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-1.2.1.tgz#ba303831f63e6a394983fde2f97ad77b22324527"
-  integrity sha512-9978wrXM50Y4rTMmW5kXIC09ZdXQZqkE4mxhwkd8VbzsGkXGPgV4zWuqQJgCEzYngdo2dYDa0l8xhX4fkSwJSg==
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/es-module-lexer/-/es-module-lexer-1.3.0.tgz#6be9c9e0b4543a60cd166ff6f8b4e9dae0b0c16f"
+  integrity sha512-vZK7T0N2CBmBOixhmjdqx2gWVbFZ4DXZ/NyRMZVlJXPa7CyFS+/a4QQsDGDQy9ZfEzxFuNEsMLeQJnKP2p5/JA==
 
 es-set-tostringtag@^2.0.1:
   version "2.0.1"
@@ -3877,6 +3877,11 @@ functions-have-names@^1.2.2, functions-have-names@^1.2.3:
   resolved "https://registry.yarnpkg.com/functions-have-names/-/functions-have-names-1.2.3.tgz#0404fe4ee2ba2f607f0e0ec3c80bae994133b834"
   integrity sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==
 
+generaterr@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/generaterr/-/generaterr-1.5.0.tgz#b0ceb6cc5164df2a061338cc340a8615395c52fc"
+  integrity sha512-JgcGRv2yUKeboLvvNrq9Bm90P4iJBu7/vd5wSLYqMG5GJ6SxZT46LAAkMfNhQ+EK3jzC+cRBm7P8aUWYyphgcQ==
+
 get-caller-file@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-2.0.5.tgz#4f94412a82db32f36e3b0b9741f8a97feb031f7e"
@@ -4264,9 +4269,9 @@ html-parse-stringify@^3.0.1:
     void-elements "3.1.0"
 
 html-webpack-plugin@^5.5.0:
-  version "5.5.2"
-  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-5.5.2.tgz#fe394ae7fc5a6e2766f620969424ca70ee55b4ee"
-  integrity sha512-2KsxTJQmtqsT1JGaZJmoMW25wpC0HM9gpW3jH/UMH62To0UKlzRUbJ/FtQNhZ0gd4gWMoetEYkyG8FMNqEO66Q==
+  version "5.5.3"
+  resolved "https://registry.yarnpkg.com/html-webpack-plugin/-/html-webpack-plugin-5.5.3.tgz#72270f4a78e222b5825b296e5e3e1328ad525a3e"
+  integrity sha512-6YrDKTuqaP/TquFH7h4srYWsZx+x6k6+FbsTm0ziCwGHDP78Unr1r9F/H4+sGmMbX08GQcJ+K64x55b+7VM/jg==
   dependencies:
     "@types/html-minifier-terser" "^6.0.0"
     html-minifier-terser "^6.0.2"
@@ -5865,6 +5870,15 @@ passport-jwt@^4.0.1:
     jsonwebtoken "^9.0.0"
     passport-strategy "^1.0.0"
 
+passport-local-mongoose@^7.1.2:
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/passport-local-mongoose/-/passport-local-mongoose-7.1.2.tgz#0a89876ef8a8e18787e59a39740e61c5653eb25e"
+  integrity sha512-hNLIKi/6IhElr/PhOze8wLDh7T4+ZYhc8GFWYApLgG7FrjI55tuGZELPtsUBqODz77OwlUUf+ngPgHN09zxGLg==
+  dependencies:
+    generaterr "^1.5.0"
+    passport-local "^1.0.0"
+    scmp "^2.1.0"
+
 passport-local@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/passport-local/-/passport-local-1.0.0.tgz#1fe63268c92e75606626437e3b906662c15ba6ee"
@@ -5950,10 +5964,10 @@ pause@0.0.1:
   resolved "https://registry.yarnpkg.com/pause/-/pause-0.0.1.tgz#1d408b3fdb76923b9543d96fb4c9dfd535d9cb5d"
   integrity sha512-KG8UEiEVkR3wGEb4m5yZkVCzigAD+cVEJck2CzYZO37ZGJfctvVptVO192MwrtPhzONn6go8ylnOdMhKqi4nfg==
 
-payload@^1.9.1:
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/payload/-/payload-1.9.1.tgz#3c3e8ec84c22a611e20d5b917aff55d9c726e4cb"
-  integrity sha512-U+renrzwFvb6I/njRZTby2DWiHBXLFPg85uex8JMyKBpYiPaUxy0GaWGqO54LsDfvbKh2f61rVbUcdxa9gxsRQ==
+payload@1.8.5:
+  version "1.8.5"
+  resolved "https://registry.yarnpkg.com/payload/-/payload-1.8.5.tgz#e42cd4c3d138ac2f1cccb91f711f8424e0308c93"
+  integrity sha512-ruiwe1h0+0ZXRdk3gC2YFx9+1/EXCMe/q9+xaAeXJCAEibf3iRwaaz/JEoWa2ZH8tGIZWrBtP++Sh9+lPeYyuA==
   dependencies:
     "@date-io/date-fns" "^2.16.0"
     "@dnd-kit/core" "^6.0.7"
@@ -6021,6 +6035,7 @@ payload@^1.9.1:
     passport-headerapikey "^1.2.2"
     passport-jwt "^4.0.1"
     passport-local "^1.0.0"
+    passport-local-mongoose "^7.1.2"
     path-browserify "^1.0.1"
     pino "^6.4.1"
     pino-pretty "^9.1.1"
@@ -6047,7 +6062,6 @@ payload@^1.9.1:
     sass "^1.57.1"
     sass-loader "^12.6.0"
     scheduler "^0.23.0"
-    scmp "^2.1.0"
     sharp "^0.31.3"
     slate "^0.91.4"
     slate-history "^0.86.0"
@@ -6852,9 +6866,9 @@ react-animate-height@^2.1.2:
     prop-types "^15.6.1"
 
 react-datepicker@^4.10.0:
-  version "4.12.0"
-  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-4.12.0.tgz#aad65d56fcaabe38aaf0c1a317f0a5264691ab5b"
-  integrity sha512-czCEp4T8ctyN9NBMG6Xq6pEpOvMtoqf4U5DxFzJoTtv1/gTX3QNJaWBUwD88j//+eF8gVkNvOW8aTAqpaIJBvw==
+  version "4.13.0"
+  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-4.13.0.tgz#1f03dc043a94745b437dacf584264ad1e4cba3ec"
+  integrity sha512-1S8yAqzcHE+LjCjMrTXJfUkTVijTPogxUYrmQmSpmRJ23fdC2w8cg04jzaEAyesTzyUa06JzayZJKk85QHbvcw==
   dependencies:
     "@popperjs/core" "^2.9.2"
     classnames "^2.2.6"

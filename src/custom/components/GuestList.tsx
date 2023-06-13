@@ -306,6 +306,7 @@ const GuestList: React.FC = (props: any) => {
   const columnDefs: ColDef<Guest>[] = useMemo(
     () => [
       {
+        cellClass: 'ag-cell--no-hover',
         editable: false,
         minWidth: 31,
         pinned: 'left',
@@ -315,7 +316,7 @@ const GuestList: React.FC = (props: any) => {
         width: 31,
       },
       {
-        cellClass: 'ag-cell--no-padding',
+        cellClass: 'ag-cell--no-padding ag-cell--no-hover',
         editable: false,
         minWidth: 26,
         pinned: 'left',
@@ -325,7 +326,7 @@ const GuestList: React.FC = (props: any) => {
         cellRenderer: (params: ICellRendererParams<Guest, any>) => <AddRowRenderer {...params} onClick={addGuest} />,
       },
       {
-        cellClass: 'ag-cell--checkbox',
+        cellClass: 'ag-cell--checkbox ag-cell--no-hover',
         checkboxSelection: true,
         editable: false,
         headerCheckboxSelection: true,
@@ -354,6 +355,18 @@ const GuestList: React.FC = (props: any) => {
         initialWidth: 120,
       },
       {
+        field: 'phone',
+        initialWidth: 150,
+      },
+      {
+        field: 'address',
+        cellEditor: TextareaEditor,
+        cellEditorPopup: true,
+        cellEditorPopupPosition: 'over',
+        initialWidth: 175,
+        suppressKeyboardEvent: ({ editing, event }) => editing && event.shiftKey && event.key === 'Enter',
+      },
+      {
         field: 'party',
         initialWidth: 175,
         ...getTagsColumnDefs('parties'),
@@ -368,20 +381,6 @@ const GuestList: React.FC = (props: any) => {
         field: 'relation',
         initialWidth: 150,
         ...getTagsColumnDefs('relations'),
-      },
-      {
-        field: 'email',
-      },
-      {
-        field: 'phone',
-        initialWidth: 150,
-      },
-      {
-        field: 'address',
-        cellEditor: TextareaEditor,
-        cellEditorPopup: true,
-        cellEditorPopupPosition: 'over',
-        suppressKeyboardEvent: ({ editing, event }) => editing && event.shiftKey && event.key === 'Enter',
       },
       {
         field: 'rsvpWelcomeParty',
@@ -399,6 +398,9 @@ const GuestList: React.FC = (props: any) => {
         cellClass: 'ag-cell--last',
         headerClass: 'ag-header-cell--last',
         ...getRsvpColumnDefs('rsvpBrunch'),
+      },
+      {
+        field: 'email',
       },
     ],
     [addGuest, getRsvpColumnDefs, getTagsColumnDefs]
@@ -509,7 +511,6 @@ const GuestList: React.FC = (props: any) => {
           rowSelection={'multiple'}
           stopEditingWhenCellsLoseFocus={true}
           suppressColumnVirtualisation={true}
-          suppressMovableColumns={true}
           suppressRowClickSelection={true}
         />
       </div>

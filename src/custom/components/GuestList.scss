@@ -143,6 +143,14 @@
   gap: 0.25rem !important;
   align-items: center !important;
 
+  &:hover {
+    background-color: var(--color-background-element) !important;
+  }
+
+  &--no-hover:hover {
+    background-color: unset !important;
+  }
+
   &--no-padding {
     padding: 0 !important;
   }

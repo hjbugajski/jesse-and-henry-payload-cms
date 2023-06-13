@@ -1,10 +1,9 @@
-import { BeforeValidateHook } from 'payload/dist/collections/config/types';
-import { CollectionConfig } from 'payload/types';
+import { CollectionBeforeValidateHook, CollectionConfig } from 'payload/types';
 
 import Tags from './Tags';
 import { Party } from '../payload-types';
 
-const beforeValidateHook: BeforeValidateHook<Party> = async ({ data, operation, req }) => {
+const beforeValidateHook: CollectionBeforeValidateHook<Party> = async ({ data, operation, req }) => {
   if (operation === 'create') {
     const characters = 'abcdefghijklmnopqrstuvwxyz';
     const limit = await req.payload.find({ collection: 'parties' }).then((data) => data.totalDocs);

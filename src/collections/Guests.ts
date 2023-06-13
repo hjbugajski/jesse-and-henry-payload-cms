@@ -1,6 +1,11 @@
 import dotenv from 'dotenv';
-import { BeforeValidateHook } from 'payload/dist/collections/config/types';
-import { CollectionAfterChangeHook, CollectionConfig, Field, PayloadRequest } from 'payload/types';
+import {
+  CollectionAfterChangeHook,
+  CollectionBeforeValidateHook,
+  CollectionConfig,
+  Field,
+  PayloadRequest,
+} from 'payload/types';
 
 import { isAdmin, isAdminFieldLevel, isAdminSelfOrParty } from '../access';
 import GuestList from '../custom/components/GuestList';
@@ -31,7 +36,7 @@ const generateRandomEmail = async (req: PayloadRequest, limit: number) => {
   return newEmail;
 };
 
-const beforeValidateHook: BeforeValidateHook<Guest> = async ({ data, operation, originalDoc, req }) => {
+const beforeValidateHook: CollectionBeforeValidateHook<Guest> = async ({ data, operation, originalDoc, req }) => {
   const limit = await req.payload.find({ collection: 'guests' }).then((data) => data.totalDocs);
 
   if (operation === 'create') {

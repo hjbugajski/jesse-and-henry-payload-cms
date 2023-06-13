@@ -31,6 +31,9 @@ const beforeValidateHook: CollectionBeforeValidateHook<Party> = async ({ data, o
 const Parties: CollectionConfig = {
   ...Tags,
   slug: 'parties',
+  versions: {
+    drafts: false,
+  },
   hooks: {
     beforeValidate: [beforeValidateHook],
   },

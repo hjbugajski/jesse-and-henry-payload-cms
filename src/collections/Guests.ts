@@ -149,6 +149,9 @@ const rsvpOptionField: Field = {
 const Guests: CollectionConfig = {
   slug: 'guests',
   auth: true,
+  versions: {
+    drafts: false,
+  },
   admin: {
     useAsTitle: 'first',
     group: 'Guests Collections',

@@ -1,10 +1,10 @@
 import dotenv from 'dotenv';
 import { BeforeValidateHook } from 'payload/dist/collections/config/types';
-import { CollectionConfig, Field, PayloadRequest } from 'payload/types';
+import { CollectionAfterChangeHook, CollectionConfig, Field, PayloadRequest } from 'payload/types';
 
 import { isAdmin, isAdminFieldLevel, isAdminSelfOrParty } from '../access';
 import GuestList from '../custom/components/GuestList';
-import { Guest } from '../payload-types';
+import { Guest, Party } from '../payload-types';
 
 dotenv.config();
 
@@ -89,6 +89,40 @@ const beforeValidateHook: BeforeValidateHook<Guest> = async ({ data, operation, 
   }
 };
 
+const afterChangeHook: CollectionAfterChangeHook<Guest> = async ({ doc, previousDoc, req }) => {
+  const party = doc.party as Party;
+
+  if (party && party.id !== previousDoc.party) {
+    const code = await req.payload
+      .findByID({
+        collection: 'parties',
+        id: party.id,
+      })
+      .then((data) => data.code);
+
+    const token = await req.payload.forgotPassword({
+      collection: 'guests',
+      data: {
+        email: doc.email,
+      },
+      disableEmail: true,
+      req,
+    });
+
+    await req.payload.resetPassword({
+      collection: 'guests',
+      data: {
+        password: `${process.env.GUEST_PASSWORD}-${code}`,
+        token,
+      },
+      overrideAccess: true,
+      req,
+    });
+  }
+
+  return doc;
+};
+
 const rsvpOptionField: Field = {
   name: 'rsvpOption',
   type: 'select',
@@ -140,6 +174,7 @@ const Guests: CollectionConfig = {
   },
   hooks: {
     beforeValidate: [beforeValidateHook],
+    afterChange: [afterChangeHook],
   },
   defaultSort: 'sort',
   access: {

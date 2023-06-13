@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [2.4.0](https://github.com/hjbugajski/jesse-and-henry-payload-cms/compare/v2.3.1...v2.4.0) (2023-06-13)
+
+### Features
+
+- **collections/Guests:** update guest password on party change ([0572b9c](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/0572b9ce2585ce791378c6f576c41209713dcc56))
+- **collections:** add versions for Guests and Parties ([931fa37](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/931fa3785ad23486d2adb776b11a45891e46786f))
+- **custom/GuestList:** reorder initial column layout, allow column reorder, highlight cell on hover ([dab5034](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/dab5034747d1b07d21611ed5824a538e3e246898))
+
+### Bug Fixes
+
+- **dependencies:** revert payload version to fix password reset issue ([07da094](https://github.com/hjbugajski/jesse-and-henry-payload-cms/commit/07da09443e6204aa62d11d40f354f83fa61f0634))
+
 ## [2.3.1](https://github.com/hjbugajski/jesse-and-henry-payload-cms/compare/v2.3.0...v2.3.1) (2023-06-11)
 
 ### Bug Fixes
